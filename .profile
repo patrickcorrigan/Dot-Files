@@ -1,6 +1,9 @@
 export CLICOLOR=1 
+set -o vi
+bind TAB:menu-complete
 alias less='/usr/share/vim/vim73/macros/less.sh'
 alias dl='cd ~/Downloads/'
+alias doc='cd ~/Documents/'
 alias pr='cd ~/Documents/Programming/'
 alias sc='cd ~/Documents/Scratch/'
 alias cs='cd ~/Documents/Computer\ Science/'

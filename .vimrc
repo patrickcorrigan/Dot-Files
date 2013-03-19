@@ -9,6 +9,9 @@ set backspace=2
 set hidden
 
 " ================ Backups =================================
+set backupdir=~/.vimfiles/backup
+set directory=~/.vimfiles/temp
+
 "Don't write backup file if vim is being called by "crontab -e"
 au BufWrite /private/tmp/crontab.* set nowritebackup
 
@@ -34,18 +37,21 @@ set autoindent
 
 " ================ Pathogen ================================
 execute pathogen#infect()
-
+ 
 " ================ Colour Scheme ===========================
 set background=light
 colorscheme solarized
 
 " ================ Leader Commands =========================
 let mapleader = ","
-nnoremap <Leader>t :tabnew<CR>
+nnoremap <Leader>t :tabnew %<CR>
+nnoremap <Leader>l :tabn<CR>
+nnoremap <Leader>h :tabp<CR>
 nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>p :bp<CR>
 nnoremap <Leader>s :w<CR>
 nnoremap <Leader>q :q<CR>
-nnoremap <Leader>wq :wq<CR>
+nnoremap <Leader>x :x<CR>
 nnoremap <Leader>c :!javac %<CR>
 nnoremap <Leader>r :!java %<CR>
+nnoremap <Leader>rs :!rspec %<CR>
