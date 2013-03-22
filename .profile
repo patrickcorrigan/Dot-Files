@@ -1,5 +1,4 @@
 export CLICOLOR=1 
-set -o vi
 bind TAB:menu-complete
 alias less='/usr/share/vim/vim73/macros/less.sh'
 alias dl='cd ~/Downloads/'

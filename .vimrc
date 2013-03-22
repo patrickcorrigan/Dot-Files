@@ -37,7 +37,11 @@ set autoindent
 
 " ================ Pathogen ================================
 execute pathogen#infect()
- 
+
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  'Library',
+\ }
+
 " ================ Colour Scheme ===========================
 set background=light
 colorscheme solarized
@@ -49,7 +53,7 @@ nnoremap <Leader>l :tabn<CR>
 nnoremap <Leader>h :tabp<CR>
 nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>p :bp<CR>
-nnoremap <Leader>s :w<CR>
+nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>c :!javac %<CR>
