@@ -8,6 +8,9 @@ set nocompatible
 set backspace=2
 set hidden
 
+
+" ================ Search  =================================
+
 " ================ Backups =================================
 set backupdir=~/.vimfiles/backup
 set directory=~/.vimfiles/temp
@@ -37,6 +40,8 @@ set autoindent
 
 " ================ Pathogen ================================
 execute pathogen#infect()
+
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 let g:ctrlp_custom_ignore = {
     \ 'dir':  'Library',
