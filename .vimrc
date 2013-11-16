@@ -1,7 +1,7 @@
 " Patrick Corrigan's VIMRC
 " Last modified Sunday March 17th 2013
 
-" ================ General =================================
+" ================ General =====================================================
 set t_Co=256
 set modelines=0
 set nocompatible 
@@ -9,6 +9,12 @@ set backspace=2
 set hidden
 
 
+" ================ Wrapping  ===================================================
+set textwidth=80
+set colorcolumn=+1
+
+" ================" Search======================================================
+set foldmethod=syntax
 " ================ Search  =================================
 
 " ================ Backups =================================
@@ -22,7 +28,7 @@ au BufWrite /private/tmp/crontab.* set nowritebackup
 au BufWrite /private/etc/pw.* set nowritebackup
 
 " ================ Status ==================================
-set relativenumber "Line numbers
+set number "Line numbers
 set ruler
 set laststatus=2 "Always keeps the status bar active
 set showcmd
@@ -41,7 +47,7 @@ set autoindent
 " ================ Pathogen ================================
 execute pathogen#infect()
 
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 let g:ctrlp_custom_ignore = {
     \ 'dir':  'Library',
@@ -52,7 +58,6 @@ set background=light
 colorscheme solarized
 
 " ================ Leader Commands =========================
-let mapleader = ","
 nnoremap <Leader>t :tabnew %<CR>
 nnoremap <Leader>l :tabn<CR>
 nnoremap <Leader>h :tabp<CR>
