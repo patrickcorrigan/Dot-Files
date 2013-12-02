@@ -18,8 +18,8 @@ set foldmethod=syntax
 " ================ Search  =================================
 
 " ================ Backups =================================
-set backupdir=~/.vimfiles/backup
-set directory=~/.vimfiles/temp
+set backupdir=~/.vim/vimfiles/backup
+set directory=~/.vim/vimfiles/temp
 
 "Don't write backup file if vim is being called by "crontab -e"
 au BufWrite /private/tmp/crontab.* set nowritebackup
@@ -45,16 +45,23 @@ set softtabstop=4
 set autoindent
 
 " ================ Pathogen ================================
-execute pathogen#infect()
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
-"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  'Library',
-\ }
-
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-commentary'
+Bundle 'kien/ctrlp.vim'
+Bundle 'godlygeek/tabular'
+Bundle 'wikitopian/hardmode'
+Bundle 'Valloric/YouCompleteMe'
 " ================ Colour Scheme ===========================
-set background=light
+set background=dark
 colorscheme solarized
 
 " ================ Leader Commands =========================
