@@ -50,7 +50,7 @@ set softtabstop=4
 set autoindent
 
 " ================ Pathogen ====================================================
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -76,16 +76,21 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
+Bundle 'kbarrette/mediummode'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimproc.vim'
 
 " ================ Colour Scheme " =============================================
-" set background=dark
+set background=dark
 colorscheme zenburn
 
 " ================ Leader Commands " ===========================================
 let mapleader = ","
-nnoremap <Leader>n :bn<CR>
+map <space> <leader>
+nnoremap <Leader>c :!
+nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>y "*Y
-nnoremap <Leader>p "+p
+nnoremap <Leader>p "+p<CR>
 nnoremap <Leader>P "+P<CR>
 nnoremap <Leader>h :set hlsearch!<CR>
 nnoremap <Leader>w :w<CR>
@@ -93,7 +98,8 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>; :b #<CR>
 nnoremap <Leader>e :e ~/.vimrc<CR>
 nnoremap <Leader>s :source ~/.vimrc<CR>
-nnoremap <Leader>c :set cursorline!<CR>
+nnoremap <Leader>d :colorscheme solarized<CR>:set background=light<CR>
+nnoremap <Leader>n :colorscheme zenburn<CR>
 
 let g:airline_powerline_fonts=1
 let g:ctrlp_by_filename=1
@@ -114,4 +120,5 @@ imap <C-K> <Plug>snipMateNextOrTrigger
 nnoremap <leader>t <Esc>:call ToggleHardMode()<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
-call togglebg#map("<F5>")
+
+nnoremap <C-t> :Unite file_rec/async<cr>
