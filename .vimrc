@@ -61,7 +61,10 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/base16-vim'
+Bundle 'baeuml/summerfruit256.vim'
 Bundle 'jnurmine/Zenburn'
+Bundle 'junegunn/seoul256.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'bling/vim-airline'
@@ -84,8 +87,12 @@ Bundle 'kbarrette/mediummode'
 Bundle 'kchmck/vim-coffee-script'
 
 " ================ Colour Scheme " =============================================
-set background=dark
-colorscheme zenburn
+if has('gui_running')
+    colorscheme seoul256
+    set background=dark
+else
+    colorscheme zenburn
+endif
 
 " ================ Leader Commands " ===========================================
 let mapleader = ","
@@ -105,6 +112,7 @@ nnoremap <Leader>s :source ~/.vimrc<CR>
 nnoremap <Leader>d :colorscheme solarized<CR>:set background=light<CR>
 nnoremap <Leader>n :colorscheme zenburn<CR>
 nnoremap <Leader>rs :%s/\s\+$//<CR>
+nnoremap <Leader>co :call ToggleAlignmentColumns()<CR>
 
 let g:airline_powerline_fonts=1
 let g:ctrlp_by_filename=1
@@ -113,6 +121,7 @@ let g:ctrlp_by_filename=1
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
+set guioptions+=c
 set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 12
 
 if has("autocmd")
@@ -129,3 +138,67 @@ nnoremap N Nzzzv
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
+
+function! ToggleAlignmentColumns()
+    if &colorcolumn == '+1'
+        set colorcolumn=4,8,12,16,20,24,+1
+    else
+        set colorcolumn=+1
+    endif
+endfunction
+
+" Highlight Word {{{
+"
+" This mini-plugin provides a few mappings for highlighting words temporarily.
+"
+" Sometimes you're looking at a hairy piece of code and would like a certain
+" word or two to stand out temporarily.  You can search for it, but that only
+" gives you one color of highlighting.  Now you can use <leader>N where N is
+" a number from 1-6 to highlight the current word in a specific color.
+
+function! HighlightInterestingWord(n) " {{{
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction " }}}
+
+" Mappings {{{
+
+nnoremap <silent> <leader>1 :call HighlightInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HighlightInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HighlightInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HighlightInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HighlightInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HighlightInterestingWord(6)<cr>
+nnoremap <silent> <leader>0 :call clearmatches()<cr>h
+
+
+" }}}
+" Default Highlights {{{
+
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b8f8f3 ctermbg=137
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+
+" }}}
+" }}}
