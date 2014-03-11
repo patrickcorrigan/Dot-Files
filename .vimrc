@@ -221,3 +221,4 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " endfunction
 " set foldtext=NeatFoldText()
 " " }}}2
+" Git test
