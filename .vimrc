@@ -98,7 +98,7 @@ endif
 let mapleader = ","
 map <space> <leader>
 nnoremap <Leader>c :!
-nnoremap <Leader>u :e ~/todo<CR>
+nnoremap <Leader>t :e ~/documents/todo<CR>
 nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>y "*Y
 nnoremap <Leader>p "+p<CR>
@@ -113,6 +113,7 @@ nnoremap <Leader>d :colorscheme solarized<CR>:set background=light<CR>
 nnoremap <Leader>n :colorscheme zenburn<CR>
 nnoremap <Leader>rs :%s/\s\+$//<CR>
 nnoremap <Leader>co :call ToggleAlignmentColumns()<CR>
+nnoremap <Leader>ca :Calc
 
 let g:airline_powerline_fonts=1
 let g:ctrlp_by_filename=1
@@ -131,9 +132,10 @@ imap jf <Esc>
 cmap jf <Esc>
 " let g:EclimCompletionMethod = 'omnifunc'
 imap <C-K> <Plug>snipMateNextOrTrigger
-nnoremap <leader>t <Esc>:call ToggleHardMode()<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
+nnoremap N Nzzzv
+nnoremap * *N
 
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -202,3 +204,21 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
 " }}}
 " }}}
+"
+
+:command! -nargs=+ Calc :py print <args>
+:py from math import *
+:py from cmath import *
+
+" function! NeatFoldText() "{{{2
+"   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+"   let lines_count = v:foldend - v:foldstart + 1
+"   let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+"   let foldchar = matchstr(&fillchars, 'fold:\zs.')
+"   let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+"   let foldtextend = lines_count_text . repeat(foldchar, 8)
+"   let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+"   return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+" endfunction
+" set foldtext=NeatFoldText()
+" " }}}2
