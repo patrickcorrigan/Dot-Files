@@ -134,7 +134,6 @@ cmap jf <Esc>
 imap <C-K> <Plug>snipMateNextOrTrigger
 nnoremap n nzzzv
 nnoremap N Nzzzv
-nnoremap N Nzzzv
 nnoremap * *N
 
 
