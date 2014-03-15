@@ -11,7 +11,6 @@ set backspace=2
 set hidden
 set shortmess+=I
 
-
 " ================ Wrapping  ===================================================
 set textwidth=80
 set colorcolumn=+1
@@ -63,6 +62,7 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/base16-vim'
 Bundle 'baeuml/summerfruit256.vim'
+Bundle 'vim-scripts/vimwiki'
 Bundle 'jnurmine/Zenburn'
 Bundle 'junegunn/seoul256.vim'
 Bundle 'Valloric/YouCompleteMe'
@@ -88,7 +88,7 @@ Bundle 'kchmck/vim-coffee-script'
 
 " ================ Colour Scheme " =============================================
 if has('gui_running')
-    colorscheme seoul256
+    colorscheme base16-flat
     set background=dark
 else
     colorscheme zenburn
@@ -97,6 +97,7 @@ endif
 " ================ Leader Commands " ===========================================
 let mapleader = ","
 map <space> <leader>
+nnoremap <Leader>rt :!rspec spec/*<CR>
 nnoremap <Leader>c :!
 nnoremap <Leader>t :e ~/documents/todo<CR>
 nnoremap <Leader>f :CtrlP<CR>
@@ -109,8 +110,8 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>; :b #<CR>
 nnoremap <Leader>e :e ~/.vimrc<CR>
 nnoremap <Leader>s :source ~/.vimrc<CR>
-nnoremap <Leader>d :colorscheme solarized<CR>:set background=light<CR>
-nnoremap <Leader>n :colorscheme zenburn<CR>
+nnoremap <Leader>d :set background=light<CR>
+nnoremap <Leader>n :set background=dark<CR>
 nnoremap <Leader>rs :%s/\s\+$//<CR>
 nnoremap <Leader>co :call ToggleAlignmentColumns()<CR>
 nnoremap <Leader>ca :Calc
@@ -122,8 +123,9 @@ let g:ctrlp_by_filename=1
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=e
 set guioptions+=c
-set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 12
+set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 13
 
 if has("autocmd")
     " filetype indent on
@@ -222,3 +224,9 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " set foldtext=NeatFoldText()
 " " }}}2
 " Git test
+"
+set cm=blowfish
+
+let wiki_1 = {}
+let wiki_1.path = '~/documents/vimwiki'
+let g:vimwiki_list = [wiki_1]
