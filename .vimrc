@@ -99,11 +99,15 @@ let mapleader = ","
 map <space> <leader>
 nnoremap <Leader>rt :!rspec spec/*<CR>
 nnoremap <Leader>c :!
-nnoremap <Leader>t :e ~/documents/todo<CR>
+nnoremap <Leader>td :e ~/documents/todo<CR>
+nnoremap <Leader>t :tabnew<CR>
 nnoremap <Leader>f :CtrlP<CR>
-nnoremap <Leader>y "*Y
-nnoremap <Leader>p "+p<CR>
+nnoremap <Leader>y "+Y
+nnoremap <Leader>sy "*Y
+noremap <Leader>p "+p<CR>
 nnoremap <Leader>P "+P<CR>
+noremap <Leader>sp "*p<CR>
+nnoremap <Leader>sP "*P<CR>
 nnoremap <Leader>h :set hlsearch!<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
@@ -125,7 +129,7 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=e
 set guioptions+=c
-set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 13
+set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 11
 
 if has("autocmd")
     " filetype indent on
