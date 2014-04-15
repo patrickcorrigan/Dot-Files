@@ -1,0 +1,25 @@
+import XMonad
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.NoBorders
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Actions.WindowGo
+import System.IO
+
+myDzenPP = dzenPP{ ppVisible = const "hello", ppHidden = const "" }
+
+--or whatever command you want
+dzenCmd = "dzen2 -w 200 -x 0"
+
+--mod+n will toggle the statusbar struts
+toggleStruts XConfig {modMask = modMask} = (modMask, xK_n)
+
+--example call to statusBar in main.
+main = xmonad =<< statusBar dzenCmd myDzenPP toggleStruts (defaultConfig
+    { 
+      terminal = myTerminal
+    })
+myTerminal 
+    = "urxvt -e zsh -c 'tmux -q has-session && exec tmux attach || exec tmux'"

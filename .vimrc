@@ -1,8 +1,10 @@
 " Patrick Corrigan's VIMRC
 " Last modified Sunday Feburary 16th 2014
-
+"
+"
 " ================ General =====================================================
 set mouse=c
+set spelllang=en_gb
 set wildmenu
 set t_Co=256
 set modelines=0
@@ -10,7 +12,6 @@ set nocompatible
 set backspace=2
 set hidden
 set shortmess+=I
-
 " ================ Wrapping  ===================================================
 set textwidth=80
 set colorcolumn=+1
@@ -58,8 +59,11 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
+Bundle 'scrooloose/nerdtree'
 Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'vim-scripts/Cleanroom'
+Bundle 'lsdr/monokai'
 Bundle 'chriskempson/base16-vim'
 Bundle 'baeuml/summerfruit256.vim'
 Bundle 'vim-scripts/vimwiki'
@@ -72,6 +76,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'sandeepravi/refactor-rails.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'godlygeek/tabular'
@@ -88,8 +93,7 @@ Bundle 'kchmck/vim-coffee-script'
 
 " ================ Colour Scheme " =============================================
 if has('gui_running')
-    colorscheme base16-flat
-    set background=dark
+    colorscheme base16-twilight
 else
     colorscheme zenburn
 endif
@@ -97,6 +101,7 @@ endif
 " ================ Leader Commands " ===========================================
 let mapleader = ","
 map <space> <leader>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>rt :!rspec spec/*<CR>
 nnoremap <Leader>c :!
 nnoremap <Leader>td :e ~/documents/todo<CR>
@@ -104,10 +109,10 @@ nnoremap <Leader>t :tabnew<CR>
 nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>y "+Y
 nnoremap <Leader>sy "*Y
-noremap <Leader>p "+p<CR>
+noremap  <Leader>p "+p<CR>
 nnoremap <Leader>P "+P<CR>
-noremap <Leader>sp "*p<CR>
-nnoremap <Leader>sP "*P<CR>
+noremap  <Leader>sep "*p<CR>
+nnoremap <Leader>seP "*P<CR>
 nnoremap <Leader>h :set hlsearch!<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
@@ -119,6 +124,8 @@ nnoremap <Leader>n :set background=dark<CR>
 nnoremap <Leader>rs :%s/\s\+$//<CR>
 nnoremap <Leader>co :call ToggleAlignmentColumns()<CR>
 nnoremap <Leader>ca :Calc
+nnoremap <Leader>r :vertical resize 85<CR>
+nnoremap <Leader>sp :set spell!<CR>
 
 let g:airline_powerline_fonts=1
 let g:ctrlp_by_filename=1
@@ -127,9 +134,10 @@ let g:ctrlp_by_filename=1
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L
 set guioptions-=e
 set guioptions+=c
-set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 11
+set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 10
 
 if has("autocmd")
     " filetype indent on

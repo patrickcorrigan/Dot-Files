@@ -5,11 +5,12 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Actions.WindowGo
 import System.IO
 
 main = do
  statusBarPipe <- spawnPipe myStatusBar 
- defaultConfig <- dzen defaultConfig {PP = dzenPP{ ppHidden = const "" }}
+ defaultConfig <- dzen defaultConfig 
  xmonad $ defaultConfig
 
   { manageHook = manageDocks<+> manageHook defaultConfig 	
@@ -24,6 +25,9 @@ main = do
   [((myModMask, xK_p), spawn myDmenu) 
   ,((myModMask .|. shiftMask, xK_l), spawn myLocker) 
   ,((myModMask .|. shiftMask, xK_o), spawn myBrowser) 
+  ,((myModMask , xK_o), runOrRaise myBrowser (className =? "Firefox"))
+  ,((myModMask , xK_v), runOrRaise "gvim" (className =? "Gvim"))
+  ,((myModMask , xK_u), raise (className =? "URxvt"))
   ,((0, 0x1008FF11), spawn myVolumeDown)
   ,((0, 0x1008FF12), spawn myToggleMute)
   ,((0, 0x1008FF13), spawn myVolumeUp)
