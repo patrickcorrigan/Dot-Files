@@ -25,6 +25,7 @@ set incsearch
 set smartcase
 
 " ================ Backups =====================================================
+set noswapfile
 set backupdir=~/.vim/vimfiles/backup
 set directory=~/.vim/vimfiles/temp
 
@@ -59,6 +60,8 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
+Bundle '29decibel/codeschool-vim-theme'
+Bundle 'tmhedberg/matchit'
 Bundle 'scrooloose/nerdtree'
 Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
@@ -93,7 +96,7 @@ Bundle 'kchmck/vim-coffee-script'
 
 " ================ Colour Scheme " =============================================
 if has('gui_running')
-    colorscheme base16-twilight
+    colorscheme codeschool
 else
     colorscheme zenburn
 endif
@@ -101,6 +104,8 @@ endif
 " ================ Leader Commands " ===========================================
 let mapleader = ","
 map <space> <leader>
+nnoremap <Leader>cd :cd %:p:h<CR>
+nnoremap <Leader>md :MediumModeToggle<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>rt :!rspec spec/*<CR>
 nnoremap <Leader>c :!
@@ -144,6 +149,11 @@ if has("autocmd")
 endif
 imap jf <Esc>
 cmap jf <Esc>
+nmap <silent> <A-k> :wincmd k<CR>
+nmap <silent> <A-j> :wincmd j<CR>
+nmap <silent> <A-h> :wincmd h<CR>
+nmap <silent> <A-l> :wincmd l<CR>
+
 " let g:EclimCompletionMethod = 'omnifunc'
 imap <C-K> <Plug>snipMateNextOrTrigger
 nnoremap n nzzzv
