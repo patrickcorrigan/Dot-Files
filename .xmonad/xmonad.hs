@@ -26,8 +26,9 @@ main = do
   ,((myModMask .|. shiftMask, xK_l), spawn myLocker) 
   ,((myModMask .|. shiftMask, xK_o), spawn myBrowser) 
   ,((myModMask , xK_o), runOrRaise myBrowser (className =? "Firefox"))
+  ,((myModMask , xK_c), runOrRaise chromium (className =? "Chromium"))
   ,((myModMask , xK_v), runOrRaise "gvim" (className =? "Gvim"))
-  ,((myModMask , xK_u), raise (className =? "URxvt"))
+  ,((myModMask , xK_s), raise (className =? "URxvt"))
   ,((0, 0x1008FF11), spawn myVolumeDown)
   ,((0, 0x1008FF12), spawn myToggleMute)
   ,((0, 0x1008FF13), spawn myVolumeUp)
@@ -38,6 +39,7 @@ main = do
 myTerminal 
     = "urxvt -e zsh -c 'tmux -q has-session && exec tmux attach || exec tmux'"
 myBrowser = "firefox"
+chromium = "chromium"
 myBorderWidth = 1
 myModMask = mod4Mask
 myWorkspaces = ["Ø","Ⅰ","Ⅱ","Ⅲ","Ⅳ ",

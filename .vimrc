@@ -61,12 +61,13 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 Bundle '29decibel/codeschool-vim-theme'
+" Bundle 'airblade/vim-gitgutter.git'
 Bundle 'tmhedberg/matchit'
 Bundle 'scrooloose/nerdtree'
 Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/Cleanroom'
-Bundle 'lsdr/monokai'
+Bundle 'tomasr/molokai'
 Bundle 'chriskempson/base16-vim'
 Bundle 'baeuml/summerfruit256.vim'
 Bundle 'vim-scripts/vimwiki'
@@ -93,7 +94,7 @@ Bundle 'Shougo/vimproc.vim'
 Bundle 'sjl/gundo.vim'
 Bundle 'kbarrette/mediummode'
 Bundle 'kchmck/vim-coffee-script'
-
+Bundle 'majutsushi/tagbar'
 " ================ Colour Scheme " =============================================
 if has('gui_running')
     colorscheme codeschool
@@ -104,12 +105,18 @@ endif
 " ================ Leader Commands " ===========================================
 let mapleader = ","
 map <space> <leader>
+
+nnoremap <Leader>fs :set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 10<CR>
+nnoremap <Leader>fm :set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 11<CR>
+nnoremap <Leader>fl :set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 12<CR>
 nnoremap <Leader>cd :cd %:p:h<CR>
+nnoremap <Leader>gg :GitGutterToggle<CR>
 nnoremap <Leader>md :MediumModeToggle<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>rt :!rspec spec/*<CR>
 nnoremap <Leader>c :!
 nnoremap <Leader>td :e ~/documents/todo<CR>
+nnoremap <Leader>zs :e ~/.zshrc<CR>
 nnoremap <Leader>t :tabnew<CR>
 nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>y "+Y
@@ -131,6 +138,7 @@ nnoremap <Leader>co :call ToggleAlignmentColumns()<CR>
 nnoremap <Leader>ca :Calc
 nnoremap <Leader>r :vertical resize 85<CR>
 nnoremap <Leader>sp :set spell!<CR>
+nnoremap <Leader>tb :TagbarToggle<CR>
 
 let g:airline_powerline_fonts=1
 let g:ctrlp_by_filename=1
