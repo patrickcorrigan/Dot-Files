@@ -1,30 +1,39 @@
 " Patrick Corrigan's VIMRC
-" Last modified Sunday Feburary 16th 2014
+" Last modified Sunday May 16th 2014
 "
-"
-" ================ General =====================================================
-set mouse=c
+
+" ================ General " ================================================{{{
+set mouse=
 set spelllang=en_gb
 set wildmenu
-set t_Co=256
+set wildmode=list:longest,full
 set modelines=0
 set nocompatible
 set backspace=2
 set hidden
 set shortmess+=I
-" ================ Wrapping  ===================================================
+set undodir=~/.vim/undo
+set undofile
+set list listchars=tab:»·,trail:·
+set cm=blowfish
+"}}}
+
+" ================ Wrapping  ================================================{{{
 set textwidth=80
 set colorcolumn=+1
 set cursorline
 set cursorcolumn
+set nowrap
+"}}}
 
-" ================" Search======================================================
-"set foldmethod=syntax
+" ================" Search==================================================={{{
 set ignorecase
 set incsearch
+set hlsearch
 set smartcase
+"}}}
 
-" ================ Backups =====================================================
+" ================ Backups =================================================={{{
 set noswapfile
 set backupdir=~/.vim/vimfiles/backup
 set directory=~/.vim/vimfiles/temp
@@ -34,81 +43,160 @@ au BufWrite /private/tmp/crontab.* set nowritebackup
 
 "Don't write backup file if vim is being called by "chpass"
 au BufWrite /private/etc/pw.* set nowritebackup
+"}}}
 
-" ================ Status ======================================================
+" ================ Status ==================================================={{{
 set number "Line numbers
 set ruler
 set laststatus=2 "Always keeps the status bar active
 set showcmd
+"}}}
 
-" ================ Syntax Highlighting =========================================
+" ================ Syntax Highlighting ======================================{{{
 filetype off
-syntax enable
 filetype plugin indent on
+syntax enable
+"}}}
 
-" ================ Tabs ========================================================
+" ================ Tabs ====================================================={{{
 set expandtab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set autoindent
+"}}}
 
-" ================ Pathogen ====================================================
-" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-
+" ================ Vundle ==================================================={{{
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
-" let Vundle manage Vundle
-Bundle '29decibel/codeschool-vim-theme'
-" Bundle 'airblade/vim-gitgutter.git'
-Bundle 'tmhedberg/matchit'
-Bundle 'scrooloose/nerdtree'
 Bundle 'gmarik/vundle'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-scripts/Cleanroom'
+
+" ================ Colorschemes ============================================={{{
 Bundle 'tomasr/molokai'
+Bundle '29decibel/codeschool-vim-theme'
+Bundle 'jeetsukumaran/vim-mochalatte'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'chriskempson/base16-vim'
 Bundle 'baeuml/summerfruit256.vim'
-Bundle 'vim-scripts/vimwiki'
+Bundle 'DAddYE/soda.vim'
+Bundle 'vim-scripts/Cleanroom'
 Bundle 'jnurmine/Zenburn'
 Bundle 'junegunn/seoul256.vim'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-Bundle 'bling/vim-airline'
+Bundle 'morhetz/gruvbox'
+
+" ================ Tpope ===================================================={{{
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-obsession'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'sandeepravi/refactor-rails.vim'
+
+" ================ IDE Like ================================================={{{
+Bundle 'scrooloose/nerdtree'
+Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/syntastic'
 Bundle 'kien/ctrlp.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'edkolev/tmuxline.vim'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc.vim'
-Bundle 'sjl/gundo.vim'
-Bundle 'kbarrette/mediummode'
+Bundle 'godlygeek/tabular'
+"Trying out no autocompletion
+" Bundle 'Valloric/YouCompleteMe'
+
+" ================ Language specific ========================================{{{
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'majutsushi/tagbar'
-" ================ Colour Scheme " =============================================
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'sandeepravi/refactor-rails.vim'
+"
+" ================ Improvements ============================================={{{
+Bundle 'tmhedberg/matchit'
+Bundle 'mileszs/ack.vim'
+Bundle 'bling/vim-airline'
+Bundle 'sjl/gundo.vim'
+
+" ================ Miscellaneous ============================================{{{
+Bundle 'vim-scripts/vimwiki'
+"Tying out no medium mode
+" Bundle 'kbarrette/mediummode'
+
+"}}}
+
+" ================ Plugin Configuration ====================================={{{
+" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+" ================ Vim Wikki ================================================{{{
+let wiki_1 = {}
+let wiki_1.path = '~/documents/vimwiki'
+let g:vimwiki_list = [wiki_1]
+
+" ================ Ctrl-P ==================================================={{{
+" let g:ctrlp_by_filename=1
+" ================ Airline ==================================================={{{
+" let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+
+" ================ Eclim ==================================================={{{
+" let g:EclimCompletionMethod = 'omnifunc'
+
+" ================ Unite ==================================================={{{
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#matcher_default#use(['sorter_rank'])
+call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate',
+            \ 'max_candidates', 0)
+let g:unite_source_file_rec_max_cache_files = 0
+let g:unite_winheight = 10
+call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate',
+            \ 'max_candidates', 0)
+
+"}}}
+
+" ================ Colour Scheme " =========================================={{{
 if has('gui_running')
-    colorscheme codeschool
+    set background=dark
+    colorscheme base16-flat
 else
     colorscheme zenburn
 endif
+"}}}
 
-" ================ Leader Commands " ===========================================
-let mapleader = ","
-map <space> <leader>
+" ================ Key Remapping " =========================================={{{
 
-nnoremap <Leader>fs :set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 10<CR>
-nnoremap <Leader>fm :set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 11<CR>
-nnoremap <Leader>fl :set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 12<CR>
+" ================ Esc Mapping " ============================================{{{
+cmap jj <Esc>
+imap jj <Esc>
+cmap jf <Esc>
+imap jf <Esc>
+
+" ================ Window Movement Mapping " ================================{{{
+" Cannot decide ctrl or alt.
+nmap <silent> <A-k> :wincmd k<CR>
+nmap <silent> <A-j> :wincmd j<CR>
+nmap <silent> <A-h> :wincmd h<CR>
+nmap <silent> <A-l> :wincmd l<CR>
+
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-l> <C-w>l
+
+
+" ================ Miscellaneous" ================================{{{
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+nmap gr *[mV%:s//test/gc<CR>
+imap <C-k> <Plug>snipMateNextOrTrigger
+
+" ================ Changing search behaviour " =============================={{{
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap * *N
+
+" ================ Leader Commands " ========================================{{{
+let mapleader = " "
+
+nnoremap <Leader>fs :set guifont=Source\ Code\ Pro\ for\ Powerline\ 10<CR>
+nnoremap <Leader>fm :set guifont=Source\ Code\ Pro\ for\ Powerline\ 11<CR>
+nnoremap <Leader>fl :set guifont=Source\ Code\ Pro\ for\ Powerline\ 12<CR>
 nnoremap <Leader>cd :cd %:p:h<CR>
 nnoremap <Leader>gg :GitGutterToggle<CR>
 nnoremap <Leader>md :MediumModeToggle<CR>
@@ -139,38 +227,39 @@ nnoremap <Leader>ca :Calc
 nnoremap <Leader>r :vertical resize 85<CR>
 nnoremap <Leader>sp :set spell!<CR>
 nnoremap <Leader>tb :TagbarToggle<CR>
+" nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
+" nnoremap <leader>f :<C-u>Unite -buffer-name=files   -start-insert file_rec/async:!<cr>
+nnoremap <leader>f :Unite -start-insert file_rec/async<cr>
+nnoremap <Leader>ms :mksession! ~/.vim_session<CR>
+nnoremap <Leader>ss :source ~/.vim_session<CR>
 
-let g:airline_powerline_fonts=1
-let g:ctrlp_by_filename=1
-" let g:airline#extensions#tabline#enabled = 1
+"}}}
 
+" ================ Gui Options " ==========================================={{{
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L
 set guioptions-=e
 set guioptions+=c
-set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 10
 
-if has("autocmd")
-    " filetype indent on
-endif
-imap jf <Esc>
-cmap jf <Esc>
-nmap <silent> <A-k> :wincmd k<CR>
-nmap <silent> <A-j> :wincmd j<CR>
-nmap <silent> <A-h> :wincmd h<CR>
-nmap <silent> <A-l> :wincmd l<CR>
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
 
-" let g:EclimCompletionMethod = 'omnifunc'
-imap <C-K> <Plug>snipMateNextOrTrigger
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap * *N
+"}}}
+" ================ Terminal Options " ======================================={{{
+set t_Co=256
 
+" }}}
+" ================ In Testing " ============================================={{{
+:command! -nargs=+ Calc :py print <args>
+:py from math import *
+:py from cmath import *
+" autocmd VimEnter * source ~/.vim_session
+" autocmd VimEnter * source ~/.vimrc
+" autocmd VimEnter * Obsession ~/.vim_session
+" set foldmethod=syntax
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
+" ================ Vimscript functions " ===================================={{{
 
 function! ToggleAlignmentColumns()
     if &colorcolumn == '+1'
@@ -181,7 +270,7 @@ function! ToggleAlignmentColumns()
 endfunction
 
 " Highlight Word {{{
-"
+" Stolen from Steve.
 " This mini-plugin provides a few mappings for highlighting words temporarily.
 "
 " Sometimes you're looking at a hairy piece of code and would like a certain
@@ -237,9 +326,6 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " }}}
 "
 
-:command! -nargs=+ Calc :py print <args>
-:py from math import *
-:py from cmath import *
 
 " function! NeatFoldText() "{{{2
 "   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
@@ -253,10 +339,4 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " endfunction
 " set foldtext=NeatFoldText()
 " " }}}2
-" Git test
-"
-set cm=blowfish
-
-let wiki_1 = {}
-let wiki_1.path = '~/documents/vimwiki'
-let g:vimwiki_list = [wiki_1]
+"}}}

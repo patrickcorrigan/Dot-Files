@@ -26,7 +26,9 @@ main = do
   ,((myModMask .|. shiftMask, xK_l), spawn myLocker) 
   ,((myModMask .|. shiftMask, xK_o), spawn myBrowser) 
   ,((myModMask , xK_o), runOrRaise myBrowser (className =? "Firefox"))
+  ,((myModMask , xK_q), runOrRaise myBrowser (className =? "Firefox"))
   ,((myModMask , xK_c), runOrRaise chromium (className =? "Chromium"))
+  ,((myModMask , xK_C), runOrRaise tsocks_chromium (className =? "Chromium"))
   ,((myModMask , xK_v), runOrRaise "gvim" (className =? "Gvim"))
   ,((myModMask , xK_s), raise (className =? "URxvt"))
   ,((0, 0x1008FF11), spawn myVolumeDown)
@@ -40,10 +42,13 @@ myTerminal
     = "urxvt -e zsh -c 'tmux -q has-session && exec tmux attach || exec tmux'"
 myBrowser = "firefox"
 chromium = "chromium"
+tsocks_chromium = "tsocks chromium"
 myBorderWidth = 1
 myModMask = mod4Mask
-myWorkspaces = ["Ø","Ⅰ","Ⅱ","Ⅲ","Ⅳ ",
+myWorkspaces = ["Ø","1","2","3","4 ",
     "5", "6", "7", "8", "9"]
+-- myWorkspaces = ["Ø","Ⅰ","Ⅱ","Ⅲ","Ⅳ ",
+--     "5", "6", "7", "8", "9"]
 myStatusBar = "conky -c .conkyrc | dzen2 -x 400"
 myDmenu = "dmenu_run -b"
 myLocker = "slock"
