@@ -10,11 +10,19 @@ import System.IO
 
 main = do
  statusBarPipe <- spawnPipe myStatusBar 
- defaultConfig <- dzen defaultConfig 
+ h <- spawnPipe myWorkspaceBar
  xmonad $ defaultConfig
 
-  { manageHook = manageDocks<+> manageHook defaultConfig 	
+  { manageHook = manageDocks<+> manageHook defaultConfig
   ,layoutHook = avoidStruts $ smartBorders $ layoutHook defaultConfig
+  ,logHook = dynamicLogWithPP $ defaultPP { ppOutput = hPutStrLn h 
+      , ppCurrent           =   dzenColor "#ebac54" "#1B1D1E" . pad
+      , ppVisible           =   dzenColor "white" "#1B1D1E" . pad
+      , ppHidden            =   dzenColor "white" "#1B1D1E" . pad
+      , ppHiddenNoWindows   =   dzenColor "#7b7b7b" "#1B1D1E" . pad
+      , ppLayout   = dzenColor "lightblue" "#222222" . pad
+      , ppTitle    = ("^fg(grey) " ++) . dzenEscape
+  }
   ,terminal = myTerminal
   ,modMask = myModMask
   ,borderWidth = myBorderWidth
@@ -26,7 +34,6 @@ main = do
   ,((myModMask .|. shiftMask, xK_l), spawn myLocker) 
   ,((myModMask .|. shiftMask, xK_o), spawn myBrowser) 
   ,((myModMask , xK_o), runOrRaise myBrowser (className =? "Firefox"))
-  ,((myModMask , xK_q), runOrRaise myBrowser (className =? "Firefox"))
   ,((myModMask , xK_c), runOrRaise chromium (className =? "Chromium"))
   ,((myModMask , xK_C), runOrRaise tsocks_chromium (className =? "Chromium"))
   ,((myModMask , xK_v), runOrRaise "gvim" (className =? "Gvim"))
@@ -45,11 +52,12 @@ chromium = "chromium"
 tsocks_chromium = "tsocks chromium"
 myBorderWidth = 1
 myModMask = mod4Mask
-myWorkspaces = ["Ø","1","2","3","4 ",
+myWorkspaces = ["1","2","3","4 ",
     "5", "6", "7", "8", "9"]
 -- myWorkspaces = ["Ø","Ⅰ","Ⅱ","Ⅲ","Ⅳ ",
 --     "5", "6", "7", "8", "9"]
-myStatusBar = "conky -c .conkyrc | dzen2 -x 400"
+myStatusBar = "conky -c .conkyrc | dzen2 -x 400 -w 880"
+myWorkspaceBar = "dzen2 -x 0 -y 0 -w 400 -ta 'l'"
 myDmenu = "dmenu_run -b"
 myLocker = "slock"
 myFocusedBorderColor = "#FF8bd2"

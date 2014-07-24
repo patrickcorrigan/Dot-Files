@@ -54,8 +54,8 @@ set showcmd
 
 " ================ Syntax Highlighting ======================================{{{
 filetype off
-filetype plugin indent on
 syntax enable
+filetype plugin indent on
 "}}}
 
 " ================ Tabs ====================================================={{{
@@ -90,7 +90,6 @@ Bundle 'tpope/vim-obsession'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
 
 " ================ IDE Like ================================================={{{
 Bundle 'scrooloose/nerdtree'
@@ -108,6 +107,8 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'sandeepravi/refactor-rails.vim'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-fireplace'
 "
 " ================ Improvements ============================================={{{
 Bundle 'tmhedberg/matchit'
@@ -141,7 +142,7 @@ let g:airline_powerline_fonts=1
 
 " ================ Unite ==================================================={{{
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#matcher_default#use(['sorter_rank'])
+call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate',
             \ 'max_candidates', 0)
 let g:unite_source_file_rec_max_cache_files = 0
@@ -194,9 +195,9 @@ nnoremap * *N
 " ================ Leader Commands " ========================================{{{
 let mapleader = " "
 
-nnoremap <Leader>fs :set guifont=Source\ Code\ Pro\ for\ Powerline\ 10<CR>
-nnoremap <Leader>fm :set guifont=Source\ Code\ Pro\ for\ Powerline\ 11<CR>
-nnoremap <Leader>fl :set guifont=Source\ Code\ Pro\ for\ Powerline\ 12<CR>
+" nnoremap <Leader>fs :set guifont=Source\ Code\ Pro\ for\ Powerline\ 10<CR>
+" nnoremap <Leader>fm :set guifont=Source\ Code\ Pro\ for\ Powerline\ 11<CR>
+" nnoremap <Leader>fl :set guifont=Source\ Code\ Pro\ for\ Powerline\ 12<CR>
 nnoremap <Leader>cd :cd %:p:h<CR>
 nnoremap <Leader>gg :GitGutterToggle<CR>
 nnoremap <Leader>md :MediumModeToggle<CR>
@@ -206,7 +207,6 @@ nnoremap <Leader>c :!
 nnoremap <Leader>td :e ~/documents/todo<CR>
 nnoremap <Leader>zs :e ~/.zshrc<CR>
 nnoremap <Leader>t :tabnew<CR>
-nnoremap <Leader>f :CtrlP<CR>
 nnoremap <Leader>y "+Y
 nnoremap <Leader>sy "*Y
 noremap  <Leader>p "+p<CR>
