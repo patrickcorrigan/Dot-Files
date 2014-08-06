@@ -1,12 +1,15 @@
 import XMonad
+import XMonad.Util.Dzen
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Spacing
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Actions.WindowGo
 import System.IO
+
 
 main = do
  statusBarPipe <- spawnPipe myStatusBar 
@@ -38,9 +41,11 @@ main = do
   ,((myModMask , xK_C), runOrRaise tsocks_chromium (className =? "Chromium"))
   ,((myModMask , xK_v), runOrRaise "gvim" (className =? "Gvim"))
   ,((myModMask , xK_s), raise (className =? "URxvt"))
-  ,((0, 0x1008FF11), spawn myVolumeDown)
-  ,((0, 0x1008FF12), spawn myToggleMute)
-  ,((0, 0x1008FF13), spawn myVolumeUp)
+  ,((myModMask , xK_i), dzenConfig (onCurr (center 50 50)) "test")
+  ,((myModMask , xK_b), sendMessage ToggleStruts)
+  ,((0, 0x1008FF11), spawn myVolumeDown >>= alert)
+  ,((0, 0x1008FF12), spawn myToggleMute >>= alert)
+  ,((0, 0x1008FF13), spawn myVolumeUp >>= alert)
   ,((0, 0x1008FF02), spawn myDisplayBrightnessUp)
   ,((0, 0x1008FF03), spawn myDisplayBrightnessDown)
   ]
@@ -52,17 +57,24 @@ chromium = "chromium"
 tsocks_chromium = "tsocks chromium"
 myBorderWidth = 1
 myModMask = mod4Mask
-myWorkspaces = ["1","2","3","4 ",
+myWorkspaces = ["1","2","3","4",
     "5", "6", "7", "8", "9"]
--- myWorkspaces = ["Ø","Ⅰ","Ⅱ","Ⅲ","Ⅳ ",
---     "5", "6", "7", "8", "9"]
+-- myWorkspaces = ["Ⅰ","Ⅱ","Ⅲ","Ⅳ ",
+    -- "5", "6", "7", "8", "9"]
 myStatusBar = "conky -c .conkyrc | dzen2 -x 400 -w 880"
 myWorkspaceBar = "dzen2 -x 0 -y 0 -w 400 -ta 'l'"
 myDmenu = "dmenu_run -b"
 myLocker = "slock"
-myFocusedBorderColor = "#FF8bd2"
+myFocusedBorderColor = "#ebac54"
 myVolumeUp = "amixer set Master 10+"
 myVolumeDown = "amixer set Master 10-"
 myToggleMute = "amixer set Master toggle"
 myDisplayBrightnessUp = "xbacklight -inc 10"
 myDisplayBrightnessDown = "xbacklight -dec 10"
+
+alert = dzenConfig centered . show
+centered =
+        onCurr (center 150 100)
+    >=> font "-*-helvetica-*-r-*-*-64-*-*-*-*-*-*-*"
+    >=> addArgs ["-fg", "#80c0ff"]
+    >=> addArgs ["-bg", "#000040"]

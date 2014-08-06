@@ -92,6 +92,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
 
 " ================ IDE Like ================================================={{{
+Bundle 'thoughtbot/vim-rspec'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
@@ -211,8 +212,8 @@ nnoremap <Leader>y "+Y
 nnoremap <Leader>sy "*Y
 noremap  <Leader>p "+p<CR>
 nnoremap <Leader>P "+P<CR>
-noremap  <Leader>sep "*p<CR>
-nnoremap <Leader>seP "*P<CR>
+noremap  <Leader>sp "*p<CR>
+nnoremap <Leader>sP "*P<CR>
 nnoremap <Leader>h :set hlsearch!<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
@@ -225,7 +226,7 @@ nnoremap <Leader>rs :%s/\s\+$//<CR>
 nnoremap <Leader>co :call ToggleAlignmentColumns()<CR>
 nnoremap <Leader>ca :Calc
 nnoremap <Leader>r :vertical resize 85<CR>
-nnoremap <Leader>sp :set spell!<CR>
+nnoremap <Leader>spl :set spell!<CR>
 nnoremap <Leader>tb :TagbarToggle<CR>
 " nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
 " nnoremap <leader>f :<C-u>Unite -buffer-name=files   -start-insert file_rec/async:!<cr>
@@ -243,7 +244,8 @@ set guioptions-=L
 set guioptions-=e
 set guioptions+=c
 
-set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
+" set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
+set guifont=Inconsolata-g\ Medium\ 10
 
 "}}}
 " ================ Terminal Options " ======================================={{{
