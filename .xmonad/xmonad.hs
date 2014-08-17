@@ -5,7 +5,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
-import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.Run
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Actions.WindowGo
 import System.IO
@@ -74,7 +74,7 @@ myDisplayBrightnessDown = "xbacklight -dec 10"
 
 alert = dzenConfig centered . show
 centered =
-        onCurr (center 150 100)
+        onCurr (center 100 100)
     >=> font "-*-helvetica-*-r-*-*-64-*-*-*-*-*-*-*"
     >=> addArgs ["-fg", "#80c0ff"]
     >=> addArgs ["-bg", "#000040"]

@@ -1,8 +1,8 @@
-" Patrick Corrigan's VIMRC
+"  Patrick Corrigan's VIMRC
 " Last modified Sunday May 16th 2014
 "
 
-" ================ General " ================================================{{{
+" ================ General " ==============================================={{{
 set mouse=
 set spelllang=en_gb
 set wildmenu
@@ -14,26 +14,27 @@ set hidden
 set shortmess+=I
 set undodir=~/.vim/undo
 set undofile
-set list listchars=tab:»·,trail:·
+set list listchars=tab:»·,trail:·,extends:❯,precedes:❮
+set showbreak=↪
 set cm=blowfish
 "}}}
 
-" ================ Wrapping  ================================================{{{
-set textwidth=80
+" ================ Wrapping  ==============================================={{{
+set textwidth=79
 set colorcolumn=+1
 set cursorline
 set cursorcolumn
 set nowrap
 "}}}
 
-" ================" Search==================================================={{{
+" ================" Search ================================================={{{
 set ignorecase
 set incsearch
 set hlsearch
 set smartcase
 "}}}
 
-" ================ Backups =================================================={{{
+" ================ Backups ================================================={{{
 set noswapfile
 set backupdir=~/.vim/vimfiles/backup
 set directory=~/.vim/vimfiles/temp
@@ -45,20 +46,20 @@ au BufWrite /private/tmp/crontab.* set nowritebackup
 au BufWrite /private/etc/pw.* set nowritebackup
 "}}}
 
-" ================ Status ==================================================={{{
+" ================ Status =================================================={{{
 set number "Line numbers
 set ruler
 set laststatus=2 "Always keeps the status bar active
 set showcmd
 "}}}
 
-" ================ Syntax Highlighting ======================================{{{
+" ================ Syntax Highlighting ====================================={{{
 filetype off
 syntax enable
 filetype plugin indent on
 "}}}
 
-" ================ Tabs ====================================================={{{
+" ================ Tabs ===================================================={{{
 set expandtab
 set shiftwidth=4
 set tabstop=4
@@ -66,12 +67,12 @@ set softtabstop=4
 set autoindent
 "}}}
 
-" ================ Vundle ==================================================={{{
+" ================ Vundle =================================================={{{
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-" ================ Colorschemes ============================================={{{
+" ================ Colorschemes ============================================{{{
 Bundle 'tomasr/molokai'
 Bundle '29decibel/codeschool-vim-theme'
 Bundle 'jeetsukumaran/vim-mochalatte'
@@ -83,15 +84,19 @@ Bundle 'vim-scripts/Cleanroom'
 Bundle 'jnurmine/Zenburn'
 Bundle 'junegunn/seoul256.vim'
 Bundle 'morhetz/gruvbox'
+Bundle 'sjl/badwolf'
+"}}}
 
-" ================ Tpope ===================================================={{{
+" ================ Tpope ==================================================={{{
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-obsession'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-fugitive'
+"}}}
 
-" ================ IDE Like ================================================={{{
+" ================ IDE Like ================================================{{{
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'scrooloose/nerdtree'
 Bundle 'majutsushi/tagbar'
@@ -102,46 +107,52 @@ Bundle 'Shougo/vimproc.vim'
 Bundle 'godlygeek/tabular'
 "Trying out no autocompletion
 " Bundle 'Valloric/YouCompleteMe'
+"}}}
 
-" ================ Language specific ========================================{{{
+" ================ Language specific ======================================={{{
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'sandeepravi/refactor-rails.vim'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fireplace'
-"
-" ================ Improvements ============================================={{{
+Bundle 'ehamberg/vim-cute-python'
+"}}}
+
+" ================ Improvements ============================================{{{
 Bundle 'tmhedberg/matchit'
 Bundle 'mileszs/ack.vim'
 Bundle 'bling/vim-airline'
 Bundle 'sjl/gundo.vim'
+"}}}
 
-" ================ Miscellaneous ============================================{{{
+" ================ Miscellaneous ==========================================={{{
 Bundle 'vim-scripts/vimwiki'
 "Tying out no medium mode
 " Bundle 'kbarrette/mediummode'
 
 "}}}
+"}}}
 
-" ================ Plugin Configuration ====================================={{{
+" ================ Plugin Configuration ===================================={{{
 " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-
-" ================ Vim Wikki ================================================{{{
+let g:rspec_command = "! bundle exec rspec --no-color {spec}"
+" ================ Vim Wikki ==================================================
 let wiki_1 = {}
 let wiki_1.path = '~/documents/vimwiki'
 let g:vimwiki_list = [wiki_1]
 
-" ================ Ctrl-P ==================================================={{{
+" ================ Ctrl-P =====================================================
 " let g:ctrlp_by_filename=1
-" ================ Airline ==================================================={{{
+" ================ Airline ====================================================
 " let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
+" let g:ycm_auto_trigger = 0
 
-" ================ Eclim ==================================================={{{
+" ================ Eclim ======================================================
 " let g:EclimCompletionMethod = 'omnifunc'
 
-" ================ Unite ==================================================={{{
+" ================ Unite ======================================================
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate',
@@ -152,25 +163,25 @@ call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate',
             \ 'max_candidates', 0)
 
 "}}}
-
-" ================ Colour Scheme " =========================================={{{
+let g:NERDTreeChDirMode=2
+" ================ Colour Scheme " ========================================={{{
 if has('gui_running')
     set background=dark
-    colorscheme base16-flat
+    colorscheme molokai
 else
     colorscheme zenburn
 endif
 "}}}
 
-" ================ Key Remapping " =========================================={{{
+" ================ Key Remapping " ========================================={{{
 
-" ================ Esc Mapping " ============================================{{{
-cmap jj <Esc>
-imap jj <Esc>
+" ================ Esc Mapping " ==============================================
+cmap jk <Esc>
+imap jk <Esc>
 cmap jf <Esc>
 imap jf <Esc>
 
-" ================ Window Movement Mapping " ================================{{{
+" ================ Window Movement Mapping " ==================================
 " Cannot decide ctrl or alt.
 nmap <silent> <A-k> :wincmd k<CR>
 nmap <silent> <A-j> :wincmd j<CR>
@@ -183,17 +194,18 @@ nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent> <C-l> <C-w>l
 
 
-" ================ Miscellaneous" ================================{{{
+" ================ Miscellaneous" =============================================
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 nmap gr *[mV%:s//test/gc<CR>
 imap <C-k> <Plug>snipMateNextOrTrigger
 
-" ================ Changing search behaviour " =============================={{{
+" ================ Changing search behaviour " ================================
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap * *N
+"}}}
 
-" ================ Leader Commands " ========================================{{{
+" ================ Leader Commands " ======================================={{{
 let mapleader = " "
 
 " nnoremap <Leader>fs :set guifont=Source\ Code\ Pro\ for\ Powerline\ 10<CR>
@@ -207,14 +219,14 @@ nnoremap <Leader>rt :!rspec spec/*<CR>
 nnoremap <Leader>c :!
 nnoremap <Leader>td :e ~/documents/todo<CR>
 nnoremap <Leader>zs :e ~/.zshrc<CR>
-nnoremap <Leader>t :tabnew<CR>
+nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>y "+Y
 nnoremap <Leader>sy "*Y
 noremap  <Leader>p "+p<CR>
 nnoremap <Leader>P "+P<CR>
 noremap  <Leader>sp "*p<CR>
 nnoremap <Leader>sP "*P<CR>
-nnoremap <Leader>h :set hlsearch!<CR>
+nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>; :b #<CR>
@@ -234,6 +246,9 @@ nnoremap <leader>f :Unite -start-insert file_rec/async<cr>
 nnoremap <Leader>ms :mksession! ~/.vim_session<CR>
 nnoremap <Leader>ss :source ~/.vim_session<CR>
 
+map <Leader>c :call RunCurrentSpecFile()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
 "}}}
 
 " ================ Gui Options " ==========================================={{{
@@ -248,11 +263,14 @@ set guioptions+=c
 set guifont=Inconsolata-g\ Medium\ 10
 
 "}}}
-" ================ Terminal Options " ======================================={{{
+
+" ================ Terminal Options " ======================================{{{
 set t_Co=256
 
 " }}}
-" ================ In Testing " ============================================={{{
+
+" ================ In Testing " ============================================{{{
+au VimResized * exe "normal! \<c-w>="
 :command! -nargs=+ Calc :py print <args>
 :py from math import *
 :py from cmath import *
@@ -261,7 +279,7 @@ set t_Co=256
 " autocmd VimEnter * Obsession ~/.vim_session
 " set foldmethod=syntax
 
-" ================ Vimscript functions " ===================================={{{
+" ================ Vimscript functions " ==================================={{{
 
 function! ToggleAlignmentColumns()
     if &colorcolumn == '+1'
@@ -342,3 +360,4 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " set foldtext=NeatFoldText()
 " " }}}2
 "}}}
+
