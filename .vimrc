@@ -105,6 +105,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'godlygeek/tabular'
+Bundle 'edkolev/tmuxline.vim'
 "Trying out no autocompletion
 " Bundle 'Valloric/YouCompleteMe'
 "}}}
@@ -141,6 +142,8 @@ let g:rspec_command = "! bundle exec rspec --no-color {spec}"
 let wiki_1 = {}
 let wiki_1.path = '~/documents/vimwiki'
 let g:vimwiki_list = [wiki_1]
+let NERDTreeShowBookmarks=1
+let NERDTreeMapHelp='<f1>'
 
 " ================ Ctrl-P =====================================================
 " let g:ctrlp_by_filename=1
@@ -167,9 +170,9 @@ let g:NERDTreeChDirMode=2
 " ================ Colour Scheme " ========================================={{{
 if has('gui_running')
     set background=dark
-    colorscheme molokai
+    colorscheme badwolf
 else
-    colorscheme zenburn
+    colorscheme badwolf
 endif
 "}}}
 
@@ -220,8 +223,8 @@ nnoremap <Leader>c :!
 nnoremap <Leader>td :e ~/documents/todo<CR>
 nnoremap <Leader>zs :e ~/.zshrc<CR>
 nnoremap <Leader>tn :tabnew<CR>
-nnoremap <Leader>y "+Y
-nnoremap <Leader>sy "*Y
+nnoremap <Leader>y "+y
+nnoremap <Leader>sy "*y
 noremap  <Leader>p "+p<CR>
 nnoremap <Leader>P "+P<CR>
 noremap  <Leader>sp "*p<CR>
@@ -259,8 +262,9 @@ set guioptions-=L
 set guioptions-=e
 set guioptions+=c
 
-" set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
-set guifont=Inconsolata-g\ Medium\ 10
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
+" set guifont=Inconsolata-g\ Medium\ 10
+" set guifont=Anonymous\ Pro\ 12
 
 "}}}
 

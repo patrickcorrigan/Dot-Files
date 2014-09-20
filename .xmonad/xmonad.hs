@@ -9,11 +9,13 @@ import XMonad.Util.Run
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Actions.WindowGo
 import System.IO
+import System.Process
 
 
 main = do
  statusBarPipe <- spawnPipe myStatusBar 
  h <- spawnPipe myWorkspaceBar
+
  xmonad $ defaultConfig
 
   { manageHook = manageDocks<+> manageHook defaultConfig
@@ -40,14 +42,16 @@ main = do
   ,((myModMask , xK_c), runOrRaise chromium (className =? "Chromium"))
   ,((myModMask , xK_C), runOrRaise tsocks_chromium (className =? "Chromium"))
   ,((myModMask , xK_v), runOrRaise "gvim" (className =? "Gvim"))
+  ,((myModMask , xK_e), runOrRaise "emacs" (className =? "Emacs"))
   ,((myModMask , xK_s), raise (className =? "URxvt"))
-  ,((myModMask , xK_i), dzenConfig (onCurr (center 50 50)) "test")
   ,((myModMask , xK_b), sendMessage ToggleStruts)
   ,((0, 0x1008FF11), spawn myVolumeDown >>= alert)
   ,((0, 0x1008FF12), spawn myToggleMute >>= alert)
   ,((0, 0x1008FF13), spawn myVolumeUp >>= alert)
   ,((0, 0x1008FF02), spawn myDisplayBrightnessUp)
   ,((0, 0x1008FF03), spawn myDisplayBrightnessDown)
+  ,((0, 0x1008FF06), spawn myKeyboardBrightnessDown)
+  ,((0, 0x1008FF05), spawn myKeyboardBrightnessUp)
   ]
 
 myTerminal 
@@ -71,10 +75,17 @@ myVolumeDown = "amixer set Master 10-"
 myToggleMute = "amixer set Master toggle"
 myDisplayBrightnessUp = "xbacklight -inc 10"
 myDisplayBrightnessDown = "xbacklight -dec 10"
+myKeyboardBrightnessUp = "kbdlight up"
+myKeyboardBrightnessDown = "kbdlight down"
 
-alert = dzenConfig centered . show
+volumeLevel = do
+    readProcess "echo" ["hello"] []
+    return ()
+
+
+alert a = dzenConfig centered (show a)
 centered =
-        onCurr (center 100 100)
+        onCurr (center 50 50)
     >=> font "-*-helvetica-*-r-*-*-64-*-*-*-*-*-*-*"
     >=> addArgs ["-fg", "#80c0ff"]
     >=> addArgs ["-bg", "#000040"]
