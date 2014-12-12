@@ -3,7 +3,9 @@ import XMonad.Util.Dzen
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Minimize
 import XMonad.Layout.Spacing
 import XMonad.Util.Run
 import XMonad.Util.EZConfig(additionalKeys)
@@ -21,12 +23,12 @@ main = do
   { manageHook = manageDocks<+> manageHook defaultConfig
   ,layoutHook = avoidStruts $ smartBorders $ layoutHook defaultConfig
   ,logHook = dynamicLogWithPP $ defaultPP { ppOutput = hPutStrLn h 
-      , ppCurrent           =   dzenColor "#ebac54" "#1B1D1E" . pad
-      , ppVisible           =   dzenColor "white" "#1B1D1E" . pad
-      , ppHidden            =   dzenColor "white" "#1B1D1E" . pad
-      , ppHiddenNoWindows   =   dzenColor "#7b7b7b" "#1B1D1E" . pad
-      , ppLayout   = dzenColor "lightblue" "#222222" . pad
-      , ppTitle    = ("^fg(grey) " ++) . dzenEscape
+      , ppCurrent           =   dzenColor "#ebac54" "#2b2b2b" . pad
+      , ppVisible           =   dzenColor "white" "#2b2b2b" . pad
+      , ppHidden            =   dzenColor "#b4cdcd" "#2b2b2b" . pad
+      , ppHiddenNoWindows   =   dzenColor "#FFFFFF" "#2b2b2b" . pad
+      , ppLayout   = dzenColor "lightblue" "#2b2b2b" . pad
+      , ppTitle    = (\x -> "")
   }
   ,terminal = myTerminal
   ,modMask = myModMask
@@ -38,13 +40,17 @@ main = do
   [((myModMask, xK_p), spawn myDmenu) 
   ,((myModMask .|. shiftMask, xK_l), spawn myLocker) 
   ,((myModMask .|. shiftMask, xK_o), spawn myBrowser) 
-  ,((myModMask , xK_o), runOrRaise myBrowser (className =? "Firefox"))
+  ,((myModMask , xK_f), runOrRaise myBrowser (className =? "Firefox"))
+  ,((myModMask , xK_d), runOrRaise myMediaPlayer (className =? "Vlc"))
   ,((myModMask , xK_c), runOrRaise chromium (className =? "Chromium"))
-  ,((myModMask , xK_C), runOrRaise tsocks_chromium (className =? "Chromium"))
   ,((myModMask , xK_v), runOrRaise "gvim" (className =? "Gvim"))
   ,((myModMask , xK_e), runOrRaise "emacs" (className =? "Emacs"))
+  ,((myModMask , xK_r), runOrRaise "emacs" (className =? "Emacs"))
   ,((myModMask , xK_s), raise (className =? "URxvt"))
+  ,((myModMask , xK_i), raise (className =? "Eclipse"))
   ,((myModMask , xK_b), sendMessage ToggleStruts)
+  ,((myModMask , xK_y), spawn myClipboardManager)
+  ,((myModMask , xK_q), alert 100)
   ,((0, 0x1008FF11), spawn myVolumeDown >>= alert)
   ,((0, 0x1008FF12), spawn myToggleMute >>= alert)
   ,((0, 0x1008FF13), spawn myVolumeUp >>= alert)
@@ -57,6 +63,7 @@ main = do
 myTerminal 
     = "urxvt -e zsh -c 'tmux -q has-session && exec tmux attach || exec tmux'"
 myBrowser = "firefox"
+myMediaPlayer = "vlc"
 chromium = "chromium"
 tsocks_chromium = "tsocks chromium"
 myBorderWidth = 1
@@ -65,8 +72,9 @@ myWorkspaces = ["1","2","3","4",
     "5", "6", "7", "8", "9"]
 -- myWorkspaces = ["Ⅰ","Ⅱ","Ⅲ","Ⅳ ",
     -- "5", "6", "7", "8", "9"]
-myStatusBar = "conky -c .conkyrc | dzen2 -x 400 -w 880"
-myWorkspaceBar = "dzen2 -x 0 -y 0 -w 400 -ta 'l'"
+myStatusBar = "conky -c .conkyrc | dzen2 -fn 'Uushi:size=9' -x 400 -w 880"
+myWorkspaceBar = "dzen2 -fn 'Uushi:size=9' -x 0 -y 0 -w 400 -ta 'l'"
+-- myWorkspaceBar = "dzen2 -fn 'Sans:size=10' -x 0 -y 0 -w 400 -ta 'l'"
 myDmenu = "dmenu_run -b"
 myLocker = "slock"
 myFocusedBorderColor = "#ebac54"
@@ -77,15 +85,19 @@ myDisplayBrightnessUp = "xbacklight -inc 10"
 myDisplayBrightnessDown = "xbacklight -dec 10"
 myKeyboardBrightnessUp = "kbdlight up"
 myKeyboardBrightnessDown = "kbdlight down"
+myClipboardManager = "copyq toggle"
 
 volumeLevel = do
-    readProcess "echo" ["hello"] []
-    return ()
+    x <- readProcess "volume_level.sh" [] []
+    return x
 
+showVolumeLevel = do
+    y <- volumeLevel
+    print y
 
 alert a = dzenConfig centered (show a)
 centered =
-        onCurr (center 50 50)
+        onCurr (center 200 50)
     >=> font "-*-helvetica-*-r-*-*-64-*-*-*-*-*-*-*"
     >=> addArgs ["-fg", "#80c0ff"]
     >=> addArgs ["-bg", "#000040"]

@@ -20,11 +20,12 @@ set cm=blowfish
 "}}}
 
 " ================ Wrapping  ==============================================={{{
-set textwidth=79
-set colorcolumn=+1
+" set textwidth=79
+" set colorcolumn=+1
 set cursorline
 set cursorcolumn
 set nowrap
+:match ErrorMsg '\%>79v.\+'
 "}}}
 
 " ================" Search ================================================={{{
@@ -55,7 +56,7 @@ set showcmd
 
 " ================ Syntax Highlighting ====================================={{{
 filetype off
-syntax enable
+" syntax enable
 filetype plugin indent on
 "}}}
 
@@ -73,7 +74,11 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " ================ Colorschemes ============================================{{{
+Bundle 'xolox/vim-colorscheme-switcher'
+Bundle 'xolox/vim-misc'
 Bundle 'tomasr/molokai'
+Bundle 'romainl/Apprentice'
+Bundle 'zefei/cake16'
 Bundle '29decibel/codeschool-vim-theme'
 Bundle 'jeetsukumaran/vim-mochalatte'
 Bundle 'altercation/vim-colors-solarized'
@@ -107,7 +112,7 @@ Bundle 'Shougo/vimproc.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'edkolev/tmuxline.vim'
 "Trying out no autocompletion
-" Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 "}}}
 
 " ================ Language specific ======================================={{{
@@ -131,6 +136,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'vim-scripts/vimwiki'
 "Tying out no medium mode
 " Bundle 'kbarrette/mediummode'
+Bundle 'vim-scripts/sudo.vim'
 
 "}}}
 "}}}
@@ -151,6 +157,7 @@ let NERDTreeMapHelp='<f1>'
 " let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 " let g:ycm_auto_trigger = 0
+" let g:airline_section_c .= '%{getcwd()}'
 
 " ================ Eclim ======================================================
 " let g:EclimCompletionMethod = 'omnifunc'
@@ -169,8 +176,12 @@ call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate',
 let g:NERDTreeChDirMode=2
 " ================ Colour Scheme " ========================================={{{
 if has('gui_running')
-    set background=dark
-    colorscheme badwolf
+    if strftime("%H") < 17
+      set background=light
+    else
+      set background=dark
+    endif
+    colorscheme base16-grayscale
 else
     colorscheme badwolf
 endif
@@ -202,7 +213,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 nmap gr *[mV%:s//test/gc<CR>
 imap <C-k> <Plug>snipMateNextOrTrigger
 
-" ================ Changing search behaviour " ================================
+" ================ Changing search behaviour " " ================================lllll
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap * *N
@@ -224,6 +235,7 @@ nnoremap <Leader>td :e ~/documents/todo<CR>
 nnoremap <Leader>zs :e ~/.zshrc<CR>
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>y "+y
+nnoremap <leader>u "+y
 nnoremap <Leader>sy "*y
 noremap  <Leader>p "+p<CR>
 nnoremap <Leader>P "+P<CR>
@@ -249,7 +261,7 @@ nnoremap <leader>f :Unite -start-insert file_rec/async<cr>
 nnoremap <Leader>ms :mksession! ~/.vim_session<CR>
 nnoremap <Leader>ss :source ~/.vim_session<CR>
 
-map <Leader>c :call RunCurrentSpecFile()<CR>
+" map <Leader>c :call RunCurrentSpecFile()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 "}}}
