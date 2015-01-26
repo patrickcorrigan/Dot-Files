@@ -5,6 +5,7 @@ zsh-mime-setup
 promptinit
 prompt adam1
 
+
 setopt RM_STAR_WAIT
 # setopt correctall
 setopt autocd
@@ -22,9 +23,10 @@ HISTFILE=~/.history
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias m='gvim --remote-silent'
+alias m='gvim_open.sh'
 alias cl='clear'
 alias torrents='/mnt/data/torrents'
+alias fy='/home/patrick/code/final_year'
 alias deploy='git push heroku master'
 
 
@@ -38,6 +40,8 @@ bindkey -M viins 'jk' vi-cmd-mode
 bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M vicmd '/' history-incremental-search-forward
 bindkey -M vicmd v edit-command-line
+
+export EDITOR="$(which vim)"
 
 export PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 export PATH="/home/patrick/code/scripts:$PATH"

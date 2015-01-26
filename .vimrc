@@ -20,7 +20,8 @@ set cm=blowfish
 "}}}
 
 " ================ Wrapping  ==============================================={{{
-" set textwidth=79
+set textwidth=79
+set formatoptions+=t
 " set colorcolumn=+1
 set cursorline
 set cursorcolumn
@@ -123,11 +124,13 @@ Bundle 'sandeepravi/refactor-rails.vim'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fireplace'
 Bundle 'ehamberg/vim-cute-python'
+Bundle 'lervag/vim-latex'
 "}}}
 
 " ================ Improvements ============================================{{{
 Bundle 'tmhedberg/matchit'
-Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
+Bundle 'rm-hull/vim-locate'
 Bundle 'bling/vim-airline'
 Bundle 'sjl/gundo.vim'
 "}}}
@@ -176,14 +179,17 @@ call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate',
 let g:NERDTreeChDirMode=2
 " ================ Colour Scheme " ========================================={{{
 if has('gui_running')
-    if strftime("%H") < 17
-      set background=light
-    else
-      set background=dark
-    endif
+    " if strftime("%H") < 17
+    "   set background=light
+    " else
+    "   set background=dark
+    " endif
+    set background=light
     colorscheme base16-grayscale
 else
+    let base16colorspace=256
     colorscheme badwolf
+    syntax on
 endif
 "}}}
 
@@ -243,6 +249,7 @@ noremap  <Leader>sp "*p<CR>
 nnoremap <Leader>sP "*P<CR>
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>m :make<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>; :b #<CR>
 nnoremap <Leader>e :e ~/.vimrc<CR>
@@ -257,7 +264,7 @@ nnoremap <Leader>spl :set spell!<CR>
 nnoremap <Leader>tb :TagbarToggle<CR>
 " nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
 " nnoremap <leader>f :<C-u>Unite -buffer-name=files   -start-insert file_rec/async:!<cr>
-nnoremap <leader>f :Unite -start-insert file_rec/async<cr>
+" nnoremap <leader>f :Unite -start-insert file_rec/async<cr>
 nnoremap <Leader>ms :mksession! ~/.vim_session<CR>
 nnoremap <Leader>ss :source ~/.vim_session<CR>
 
@@ -376,4 +383,3 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " set foldtext=NeatFoldText()
 " " }}}2
 "}}}
-

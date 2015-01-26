@@ -42,18 +42,18 @@ main = do
   ,((myModMask .|. shiftMask, xK_o), spawn myBrowser) 
   ,((myModMask , xK_f), runOrRaise myBrowser (className =? "Firefox"))
   ,((myModMask , xK_d), runOrRaise myMediaPlayer (className =? "Vlc"))
-  ,((myModMask , xK_c), runOrRaise chromium (className =? "Chromium"))
+  ,((myModMask , xK_c), runOrRaiseNext chromium (className =? "Chromium"))
   ,((myModMask , xK_v), runOrRaise "gvim" (className =? "Gvim"))
   ,((myModMask , xK_e), runOrRaise "emacs" (className =? "Emacs"))
-  ,((myModMask , xK_r), runOrRaise "emacs" (className =? "Emacs"))
+  ,((myModMask , xK_r), runOrRaiseNext "evince" (className =? "Evince"))
   ,((myModMask , xK_s), raise (className =? "URxvt"))
   ,((myModMask , xK_i), raise (className =? "Eclipse"))
   ,((myModMask , xK_b), sendMessage ToggleStruts)
   ,((myModMask , xK_y), spawn myClipboardManager)
   ,((myModMask , xK_q), alert 100)
-  ,((0, 0x1008FF11), spawn myVolumeDown >>= alert)
-  ,((0, 0x1008FF12), spawn myToggleMute >>= alert)
-  ,((0, 0x1008FF13), spawn myVolumeUp >>= alert)
+  ,((0, 0x1008FF11), spawn myVolumeDown)
+  ,((0, 0x1008FF12), spawn myToggleMute)
+  ,((0, 0x1008FF13), spawn myVolumeUp)
   ,((0, 0x1008FF02), spawn myDisplayBrightnessUp)
   ,((0, 0x1008FF03), spawn myDisplayBrightnessDown)
   ,((0, 0x1008FF06), spawn myKeyboardBrightnessDown)
@@ -72,26 +72,26 @@ myWorkspaces = ["1","2","3","4",
     "5", "6", "7", "8", "9"]
 -- myWorkspaces = ["Ⅰ","Ⅱ","Ⅲ","Ⅳ ",
     -- "5", "6", "7", "8", "9"]
-myStatusBar = "conky -c .conkyrc | dzen2 -fn 'Uushi:size=9' -x 400 -w 880"
-myWorkspaceBar = "dzen2 -fn 'Uushi:size=9' -x 0 -y 0 -w 400 -ta 'l'"
+myStatusBar = "conky -c .conkyrc | dzen2 -e '' -fn 'Uushi:size=9' -x 400 -w 880"
+myWorkspaceBar = "dzen2 -e '' -fn 'Uushi:size=9' -x 0 -y 0 -w 400 -ta 'l'"
 -- myWorkspaceBar = "dzen2 -fn 'Sans:size=10' -x 0 -y 0 -w 400 -ta 'l'"
 myDmenu = "dmenu_run -b"
 myLocker = "slock"
 myFocusedBorderColor = "#ebac54"
-myVolumeUp = "amixer set Master 10+"
-myVolumeDown = "amixer set Master 10-"
-myToggleMute = "amixer set Master toggle"
-myDisplayBrightnessUp = "xbacklight -inc 10"
-myDisplayBrightnessDown = "xbacklight -dec 10"
+myVolumeUp = "amixer set Master 10+ && volume_popup.sh"
+myVolumeDown = "amixer set Master 10- && volume_popup.sh"
+myToggleMute = "amixer set Master toggle && volume_popup.sh"
+myDisplayBrightnessUp = "xbacklight -inc 10 && backlight_popup.sh"
+myDisplayBrightnessDown = "xbacklight -dec 10 && backlight_popup.sh"
 myKeyboardBrightnessUp = "kbdlight up"
 myKeyboardBrightnessDown = "kbdlight down"
 myClipboardManager = "copyq toggle"
 
 volumeLevel = do
-    x <- readProcess "volume_level.sh" [] []
-    return x
+    x <- readProcess "volume_popup.sh" [] []
+    return 9
 
-showVolumeLevel = do
+showVolumeLevel x = do
     y <- volumeLevel
     print y
 
