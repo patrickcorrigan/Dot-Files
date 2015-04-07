@@ -1,35 +1,45 @@
 import XMonad
+import qualified XMonad.StackSet as W
 import XMonad.Util.Dzen
+import XMonad.Util.Themes
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Minimize
+import XMonad.Layout.Accordion
+import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.Tabbed
 import XMonad.Layout.Spacing
+import XMonad.Layout.SimpleFloat
+import XMonad.Layout.Grid
 import XMonad.Util.Run
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Actions.WindowGo
+import XMonad.Actions.CopyWindow
 import System.IO
 import System.Process
-
+import XMonad.Hooks.ICCCMFocus
 
 main = do
- statusBarPipe <- spawnPipe myStatusBar 
+ statusBarPipe <- spawnPipe myStatusBar
  h <- spawnPipe myWorkspaceBar
 
  xmonad $ defaultConfig
 
   { manageHook = manageDocks<+> manageHook defaultConfig
-  ,layoutHook = avoidStruts $ smartBorders $ layoutHook defaultConfig
-  ,logHook = dynamicLogWithPP $ defaultPP { ppOutput = hPutStrLn h 
-      , ppCurrent           =   dzenColor "#ebac54" "#2b2b2b" . pad
+  ,logHook = do
+      takeTopFocus
+      dynamicLogWithPP $ defaultPP { ppOutput = hPutStrLn h
+      , ppCurrent           =   dzenColor "#00cdff" "#2b2b2b" . pad
       , ppVisible           =   dzenColor "white" "#2b2b2b" . pad
-      , ppHidden            =   dzenColor "#b4cdcd" "#2b2b2b" . pad
+      , ppHidden            =   dzenColor "#ebac54" "#2b2b2b" . pad
       , ppHiddenNoWindows   =   dzenColor "#FFFFFF" "#2b2b2b" . pad
-      , ppLayout   = dzenColor "lightblue" "#2b2b2b" . pad
-      , ppTitle    = (\x -> "")
-  }
+      , ppLayout   = dzenColor "lightblue" "#2b2b2b" . pad . drop 9
+      , ppTitle    = const ""
+      }
+  ,layoutHook = minimize $ avoidStruts $ smartBorders (Full |||  Tall 1 (3/100) (1/2) ||| Mirror (Tall 1 (3/100) (1/2)) ||| tabbedBottom shrinkText (theme smallClean))
   ,terminal = myTerminal
   ,modMask = myModMask
   ,borderWidth = myBorderWidth
@@ -37,9 +47,9 @@ main = do
   ,focusedBorderColor = myFocusedBorderColor
   }
   `additionalKeys`
-  [((myModMask, xK_p), spawn myDmenu) 
-  ,((myModMask .|. shiftMask, xK_l), spawn myLocker) 
-  ,((myModMask .|. shiftMask, xK_o), spawn myBrowser) 
+  [((myModMask, xK_p), spawn myDmenu)
+  ,((myModMask .|. shiftMask, xK_l), spawn myLocker)
+  ,((myModMask .|. shiftMask, xK_o), spawn myBrowser)
   ,((myModMask , xK_f), runOrRaise myBrowser (className =? "Firefox"))
   ,((myModMask , xK_d), runOrRaise myMediaPlayer (className =? "Vlc"))
   ,((myModMask , xK_c), runOrRaiseNext chromium (className =? "Chromium"))
@@ -51,6 +61,9 @@ main = do
   ,((myModMask , xK_b), sendMessage ToggleStruts)
   ,((myModMask , xK_y), spawn myClipboardManager)
   ,((myModMask , xK_q), alert 100)
+  ,((myModMask , xK_z), withFocused minimizeWindow)
+  ,((myModMask , xK_a), sendMessage RestoreNextMinimizedWin)
+  , ((myModMask, xK_u), sendMessage (Toggle "(spacing 5)Grid"))
   ,((0, 0x1008FF11), spawn myVolumeDown)
   ,((0, 0x1008FF12), spawn myToggleMute)
   ,((0, 0x1008FF13), spawn myVolumeUp)
@@ -58,24 +71,26 @@ main = do
   ,((0, 0x1008FF03), spawn myDisplayBrightnessDown)
   ,((0, 0x1008FF06), spawn myKeyboardBrightnessDown)
   ,((0, 0x1008FF05), spawn myKeyboardBrightnessUp)
+  ,((myModMask, xK_a ), windows copyToAll)
+  ,((myModMask .|. shiftMask, xK_a), killAllOtherCopies)
   ]
 
-myTerminal 
+myTerminal
     = "urxvt -e zsh -c 'tmux -q has-session && exec tmux attach || exec tmux'"
 myBrowser = "firefox"
 myMediaPlayer = "vlc"
 chromium = "chromium"
-tsocks_chromium = "tsocks chromium"
 myBorderWidth = 1
 myModMask = mod4Mask
-myWorkspaces = ["1","2","3","4",
-    "5", "6", "7", "8", "9"]
+myWorkspaces = ["One","Two","Three","Four", "Five"]
+    --"5", "6", "7", "8", "9"]
 -- myWorkspaces = ["Ⅰ","Ⅱ","Ⅲ","Ⅳ ",
     -- "5", "6", "7", "8", "9"]
-myStatusBar = "conky -c .conkyrc | dzen2 -e '' -fn 'Uushi:size=9' -x 400 -w 880"
-myWorkspaceBar = "dzen2 -e '' -fn 'Uushi:size=9' -x 0 -y 0 -w 400 -ta 'l'"
+myStatusBar = "conky -c .conkyrc | dzen2 -e '' -fn 'Source Code Pro For Powerline:size=8' -x 400 -w 880"
+myWorkspaceBar = "dzen2 -e '' -fn 'Source Code Pro For Powerline:size=8' -x 0 -y 0 -w 400 -ta 'l'"
+-- myWorkspaceBar = "dzen2 -e '' -fn 'Uushi:size=9' -x 0 -y 0 -w 400 -ta 'l'"
 -- myWorkspaceBar = "dzen2 -fn 'Sans:size=10' -x 0 -y 0 -w 400 -ta 'l'"
-myDmenu = "dmenu_run -b"
+myDmenu = "dmenu_run -b -fn 'Source Code Pro For Powerline-9'"
 myLocker = "slock"
 myFocusedBorderColor = "#ebac54"
 myVolumeUp = "amixer set Master 10+ && volume_popup.sh"

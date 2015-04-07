@@ -140,13 +140,13 @@ Bundle 'vim-scripts/vimwiki'
 "Tying out no medium mode
 " Bundle 'kbarrette/mediummode'
 Bundle 'vim-scripts/sudo.vim'
-
 "}}}
 "}}}
 
 " ================ Plugin Configuration ===================================={{{
 " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 let g:rspec_command = "! bundle exec rspec --no-color {spec}"
+
 " ================ Vim Wikki ==================================================
 let wiki_1 = {}
 let wiki_1.path = '~/documents/vimwiki'
@@ -156,6 +156,7 @@ let NERDTreeMapHelp='<f1>'
 
 " ================ Ctrl-P =====================================================
 " let g:ctrlp_by_filename=1
+
 " ================ Airline ====================================================
 " let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
@@ -166,14 +167,13 @@ let g:airline_powerline_fonts=1
 " let g:EclimCompletionMethod = 'omnifunc'
 
 " ================ Unite ======================================================
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+let g:unite_winheight = 10
 call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
 call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate',
             \ 'max_candidates', 0)
 let g:unite_source_file_rec_max_cache_files = 0
-let g:unite_winheight = 10
-call unite#custom#source('file_mru,file_rec,file_rec/async,grepocate',
-            \ 'max_candidates', 0)
 
 "}}}
 let g:NERDTreeChDirMode=2
@@ -192,14 +192,14 @@ else
     syntax on
 endif
 "}}}
+hi Search guibg=peru guifg=wheat
+hi IncSearch guibg=deepskyblue guifg=wheat
 
 " ================ Key Remapping " ========================================={{{
 
 " ================ Esc Mapping " ==============================================
 cmap jk <Esc>
 imap jk <Esc>
-cmap jf <Esc>
-imap jf <Esc>
 
 " ================ Window Movement Mapping " ==================================
 " Cannot decide ctrl or alt.
@@ -236,7 +236,7 @@ nnoremap <Leader>gg :GitGutterToggle<CR>
 nnoremap <Leader>md :MediumModeToggle<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>rt :!rspec spec/*<CR>
-nnoremap <Leader>c :!
+nnoremap <Leader>c :cd ~/code<CR>
 nnoremap <Leader>td :e ~/documents/todo<CR>
 nnoremap <Leader>zs :e ~/.zshrc<CR>
 nnoremap <Leader>tn :tabnew<CR>
@@ -262,9 +262,7 @@ nnoremap <Leader>ca :Calc
 nnoremap <Leader>r :vertical resize 85<CR>
 nnoremap <Leader>spl :set spell!<CR>
 nnoremap <Leader>tb :TagbarToggle<CR>
-" nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
-" nnoremap <leader>f :<C-u>Unite -buffer-name=files   -start-insert file_rec/async:!<cr>
-" nnoremap <leader>f :Unite -start-insert file_rec/async<cr>
+nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
 nnoremap <Leader>ms :mksession! ~/.vim_session<CR>
 nnoremap <Leader>ss :source ~/.vim_session<CR>
 
@@ -383,3 +381,7 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " set foldtext=NeatFoldText()
 " " }}}2
 "}}}
+"
+"
+hi Search guibg=peru guifg=wheat
+hi IncSearch guibg=deepskyblue guifg=wheat

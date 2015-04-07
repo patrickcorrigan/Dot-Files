@@ -28,6 +28,7 @@ alias cl='clear'
 alias torrents='/mnt/data/torrents'
 alias fy='/home/patrick/code/final_year'
 alias deploy='git push heroku master'
+alias code='/home/patrick/code'
 
 
 alias vless='/usr/share/vim/vim74/macros/less.sh'
@@ -46,9 +47,7 @@ export EDITOR="$(which vim)"
 export PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 export PATH="/home/patrick/code/scripts:$PATH"
 export PATH="/home/patrick/code/bin:$PATH"
-export PATH="/home/patrick/code/bin/PebbleSDK-2.0.2/bin:$PATH"
-export PATH=/home/.cabal/bin:$PATH
-export PATH=/home/patrick/.cabal/bin:$PATH
+export PATH="/home/patrick/.cabal/bin:$PATH"
 
 
 zle-keymap-select () {
@@ -65,8 +64,12 @@ zle-keymap-select () {
     zle-line-init () {
         zle -K viins
         if [ $TERM = "rxvt-unicode-256color" ]; then
-            echo -ne "\033]12;Grey\007"
+            echo -ne "\033]12;Red\007"
         fi
     }
     zle -N zle-line-init
     bindkey -v
+
+function cs () {
+    cd "$@" && ls
+    }

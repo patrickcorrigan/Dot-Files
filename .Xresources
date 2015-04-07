@@ -1,4 +1,3 @@
-
 !-------------------------------------------------------------------------------
 ! Xft settings
 !-------------------------------------------------------------------------------
@@ -25,7 +24,7 @@ URxvt.lineSpace:            0
 ! Fonts
 URxvt.allow_bold:           true
 URxvt.font: xft:Source Code Pro for Powerline:size=12
-URxvt.boldFont: xft:Source Code Pro for Powerline:size=12
+URxvt.boldFont: xft:Source Code Pro for Powerline:bold:size=12
 
 ! Fix font space
 URxvt*letterSpace: -1
@@ -37,7 +36,7 @@ URxvt.scrollBar:            false
 ! Perl extensions
 URxvt.perl-ext-common:      default,matcher
 URxvt.matcher.button:       1
-URxvt.urlLauncher:          firefox
+URxvt.urlLauncher:          chromium
 
 ! Cursor
 URxvt.cursorBlink:          true
