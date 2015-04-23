@@ -7,22 +7,22 @@ update_interval 1
 update_interval_on_battery 1
 
 TEXT
-^fg(\#abcdef)  ^ca(1,netinfo_popup.sh)⮚ ^fg(\#ffffff)${wireless_essid wlp3s0}^ca() \
+^fg(\#abcdef)  ^ca(1,netinfo_popup.sh)^fn(uushi:size=8)⮚ ^fn(Source Code Pro for Powerline:size=8)^fg(\#ffffff)${wireless_essid wlp3s0}^ca() \
 ${if_match ${wireless_link_qual_perc wlp3s0} > 60}+${else}-${endif}  \
   \
-^fg(\#9932cd)  ^ca(1,battery_info_popup.sh)⮏ ^fg(\#ffffff)${battery_percent}^ca()  \
+^fg(\#9932cd)  ^ca(1,battery_info_popup.sh)^fn(uushi:size=8)⮏ ^fn(Source Code Pro for Powerline:size=8)^fg(\#ffffff)${battery_percent}^ca()  \
   \
-^fg(\#0099cc)  ⮞ ^fg(\#ffffff)${execp volume_level.sh | pad.sh 3}  \
+^fg(\#0099cc)  ^fn(uushi:size=8)⮞ ^fn(Source Code Pro for Powerline:size=8) ^fg(\#ffffff)${execp volume_level.sh | pad.sh 3}  \
   \
-^fg(\#66cd00)  ⮛ ^fg(\#ffffff)${execp xbacklight -get | awk '{printf("%.0f\n",
+^fg(\#66cd00)  ^fn(uushi:size=8)⮛ ^fn(Source Code Pro for Powerline:size=8) ^fg(\#ffffff)${execp xbacklight -get | awk '{printf("%.0f\n",
 $1)}' | pad.sh 3}  \
   \
-^fg(\#fc3bdc)  ⮗ ^fg(\#ffffff)${execpi 3600 checkupdates | wc -l | pad.sh 2}  \
+^fg(\#fc3bdc)  ^fn(uushi:size=8)⮗ ^fn(Source Code Pro for Powerline:size=8) ^fg(\#ffffff)${execpi 3600 checkupdates | wc -l | pad.sh 2}  \
   \
-^fg(\#fcdc3b)  ^ca(1,caffeine_info_popup.sh)⮠ ^fg(\#ffffff)Caffeine Off^ca()  \
+^fg(\#fcdc3b)  ^ca(1,caffeine_info_popup.sh)^fn(uushi:size=8)⮠ ^fn(Source Code Pro for Powerline:size=8) ^fg(\#ffffff)Caffeine Off^ca()  \
   \
-^fg(\#fcdc3b)  ⮠ ^fg(\#ffffff)${time %H: %M}  \
+^fg(\#fcdc3b)  ^fn(uushi:size=8)⮠ ^fn(Source Code Pro for Powerline:size=8) ^fg(\#ffffff)${time %H: %M}  \
   \
-^fg(\#ff0000)  ⮠ ^fg(\#ffffff)${time %A %d %B %Y}  \
+^fg(\#ff0000)  ^fn(uushi:size=8)⮠ ^fn(Source Code Pro for Powerline:size=8) ^fg(\#ffffff)${time %A %d %B %Y}  \
   \
-${font Monospace:size=10}0${font}
+>^^.^^<

@@ -50,7 +50,7 @@ main = do
   [((myModMask, xK_p), spawn myDmenu)
   ,((myModMask .|. shiftMask, xK_l), spawn myLocker)
   ,((myModMask .|. shiftMask, xK_o), spawn myBrowser)
-  ,((myModMask , xK_f), runOrRaise myBrowser (className =? "Firefox"))
+  -- ,((myModMask , xK_f), runOrRaise myBrowser (className =? "Firefox"))
   ,((myModMask , xK_d), runOrRaise myMediaPlayer (className =? "Vlc"))
   ,((myModMask , xK_c), runOrRaiseNext chromium (className =? "Chromium"))
   ,((myModMask , xK_v), runOrRaise "gvim" (className =? "Gvim"))
@@ -73,6 +73,7 @@ main = do
   ,((0, 0x1008FF05), spawn myKeyboardBrightnessUp)
   ,((myModMask, xK_a ), windows copyToAll)
   ,((myModMask .|. shiftMask, xK_a), killAllOtherCopies)
+  ,((myModMask ,xK_f), sendMessage (Toggle "Full"))
   ]
 
 myTerminal

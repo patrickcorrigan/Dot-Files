@@ -20,7 +20,7 @@ set cm=blowfish
 "}}}
 
 " ================ Wrapping  ==============================================={{{
-set textwidth=79
+" set textwidth=79
 set formatoptions+=t
 " set colorcolumn=+1
 set cursorline
@@ -72,74 +72,76 @@ set autoindent
 " ================ Vundle =================================================={{{
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " ================ Colorschemes ============================================{{{
-Bundle 'xolox/vim-colorscheme-switcher'
-Bundle 'xolox/vim-misc'
-Bundle 'tomasr/molokai'
-Bundle 'romainl/Apprentice'
-Bundle 'zefei/cake16'
-Bundle '29decibel/codeschool-vim-theme'
-Bundle 'jeetsukumaran/vim-mochalatte'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'chriskempson/base16-vim'
-Bundle 'baeuml/summerfruit256.vim'
-Bundle 'DAddYE/soda.vim'
-Bundle 'vim-scripts/Cleanroom'
-Bundle 'jnurmine/Zenburn'
-Bundle 'junegunn/seoul256.vim'
-Bundle 'morhetz/gruvbox'
-Bundle 'sjl/badwolf'
+Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'xolox/vim-misc'
+Plugin 'tomasr/molokai'
+Plugin 'romainl/Apprentice'
+Plugin 'zefei/cake16'
+Plugin '29decibel/codeschool-vim-theme'
+Plugin 'jeetsukumaran/vim-mochalatte'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/base16-vim'
+Plugin 'baeuml/summerfruit256.vim'
+Plugin 'DAddYE/soda.vim'
+Plugin 'vim-scripts/Cleanroom'
+Plugin 'jnurmine/Zenburn'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'sjl/badwolf'
+Plugin 'zefei/vim-colortuner'
 "}}}
 
 " ================ Tpope ==================================================={{{
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-obsession'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-obsession'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
 "}}}
 
 " ================ IDE Like ================================================{{{
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'scrooloose/nerdtree'
-Bundle 'majutsushi/tagbar'
-Bundle 'scrooloose/syntastic'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'edkolev/tmuxline.vim'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/syntastic'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'edkolev/tmuxline.vim'
 "Trying out no autocompletion
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 "}}}
 
 " ================ Language specific ======================================={{{
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'sandeepravi/refactor-rails.vim'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-fireplace'
-Bundle 'ehamberg/vim-cute-python'
-Bundle 'lervag/vim-latex'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'sandeepravi/refactor-rails.vim'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-fireplace'
+Plugin 'ehamberg/vim-cute-python'
+Plugin 'lervag/vim-latex'
 "}}}
 
 " ================ Improvements ============================================{{{
-Bundle 'tmhedberg/matchit'
-Bundle 'rking/ag.vim'
-Bundle 'rm-hull/vim-locate'
-Bundle 'bling/vim-airline'
-Bundle 'sjl/gundo.vim'
+Plugin 'tmhedberg/matchit'
+Plugin 'rking/ag.vim'
+Plugin 'rm-hull/vim-locate'
+Plugin 'bling/vim-airline'
+Plugin 'sjl/gundo.vim'
+Plugin 'vim-scripts/BufOnly.vim'
 "}}}
 
 " ================ Miscellaneous ==========================================={{{
-Bundle 'vim-scripts/vimwiki'
+Plugin 'vim-scripts/vimwiki'
 "Tying out no medium mode
-" Bundle 'kbarrette/mediummode'
-Bundle 'vim-scripts/sudo.vim'
+" Plugin 'kbarrette/mediummode'
+Plugin 'vim-scripts/sudo.vim'
 "}}}
 "}}}
 
@@ -227,6 +229,7 @@ nnoremap * *N
 
 " ================ Leader Commands " ======================================={{{
 let mapleader = " "
+let maplocalleader = "\\"
 
 " nnoremap <Leader>fs :set guifont=Source\ Code\ Pro\ for\ Powerline\ 10<CR>
 " nnoremap <Leader>fm :set guifont=Source\ Code\ Pro\ for\ Powerline\ 11<CR>
@@ -236,9 +239,8 @@ nnoremap <Leader>gg :GitGutterToggle<CR>
 nnoremap <Leader>md :MediumModeToggle<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 nnoremap <Leader>rt :!rspec spec/*<CR>
-nnoremap <Leader>c :cd ~/code<CR>
+nnoremap <Leader>c :cd ~/code/final_year/denotational_semantics/report<CR>
 nnoremap <Leader>td :e ~/documents/todo<CR>
-nnoremap <Leader>zs :e ~/.zshrc<CR>
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>y "+y
 nnoremap <leader>u "+y
@@ -252,8 +254,10 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>m :make<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>; :b #<CR>
-nnoremap <Leader>e :e ~/.vimrc<CR>
-nnoremap <Leader>s :source ~/.vimrc<CR>
+nnoremap <Leader>e :vsplit $MYVIMRC<CR>
+nnoremap <Leader>z :vsplit ~/.zshrc<CR>
+nnoremap <Leader>x :vsplit ~/.xmonad/xmonad.hs<CR>
+nnoremap <Leader>s :source $MYVIMRC<CR>
 nnoremap <Leader>d :set background=light<CR>
 nnoremap <Leader>n :set background=dark<CR>
 nnoremap <Leader>rs :%s/\s\+$//<CR>
@@ -385,3 +389,7 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 "
 hi Search guibg=peru guifg=wheat
 hi IncSearch guibg=deepskyblue guifg=wheat
+
+set ssop-=options    " do not store global and local values in a session
+set ssop-=folds      " do not store folds
+iabbrev @@    patrickcorrigan7@gmail.com
