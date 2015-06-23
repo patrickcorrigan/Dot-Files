@@ -1,0 +1,75 @@
+" ================ Vundle =================================================={{{
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Plugin 'gmarik/vundle'
+
+" ================ Colorschemes ============================================{{{
+Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'xolox/vim-misc'
+Plugin 'tomasr/molokai'
+Plugin 'romainl/Apprentice'
+Plugin 'zefei/cake16'
+Plugin '29decibel/codeschool-vim-theme'
+Plugin 'jeetsukumaran/vim-mochalatte'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/base16-vim'
+Plugin 'baeuml/summerfruit256.vim'
+Plugin 'DAddYE/soda.vim'
+Plugin 'vim-scripts/Cleanroom'
+Plugin 'jnurmine/Zenburn'
+Plugin 'junegunn/seoul256.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'sjl/badwolf'
+Plugin 'zefei/vim-colortuner'
+"}}}
+
+" ================ Tpope ==================================================={{{
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-obsession'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+"}}}
+
+" ================ IDE Like ================================================{{{
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/syntastic'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'godlygeek/tabular'
+"Plugin 'edkolev/tmuxline.vim'
+"Trying out no autocompletion
+Plugin 'Valloric/YouCompleteMe'
+"}}}
+
+" ================ Language specific ======================================={{{
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'sandeepravi/refactor-rails.vim'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-fireplace'
+Plugin 'ehamberg/vim-cute-python'
+Plugin 'lervag/vim-latex'
+"}}}
+
+" ================ Improvements ============================================{{{
+Plugin 'tmhedberg/matchit'
+Plugin 'rking/ag.vim'
+Plugin 'rm-hull/vim-locate'
+Plugin 'bling/vim-airline'
+Plugin 'sjl/gundo.vim'
+Plugin 'vim-scripts/BufOnly.vim'
+"}}}
+
+" ================ Miscellaneous ==========================================={{{
+Plugin 'vim-scripts/vimwiki'
+"Tying out no medium mode
+" Plugin 'kbarrette/mediummode'
+Plugin 'vim-scripts/sudo.vim'
+"}}}
+"}}}

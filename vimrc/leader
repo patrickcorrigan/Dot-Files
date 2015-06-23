@@ -1,0 +1,43 @@
+" ================ Leader Commands " ======================================={{{
+let mapleader = " "
+let maplocalleader = "\\"
+
+nnoremap <Leader>; :b #<CR>
+nnoremap <Leader>P "+P<CR>
+nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>c :cd ~/code/final_year/denotational_semantics/report<CR>
+nnoremap <Leader>ca :Calc
+nnoremap <Leader>cd :cd %:p:h<CR>
+nnoremap <Leader>co :call ToggleAlignmentColumns()<CR>
+nnoremap <Leader>d :set background=light<CR>
+nnoremap <Leader>e :vsplit $MYVIMRC<CR>
+nnoremap <Leader>gg :GitGutterToggle<CR>
+nnoremap <Leader>h :nohlsearch<CR>
+nnoremap <Leader>j :CtrlPBuffer<CR>
+nnoremap <Leader>m :make<CR>
+nnoremap <Leader>md :MediumModeToggle<CR>
+nnoremap <Leader>ms :mksession! ~/.vim_session<CR>
+nnoremap <Leader>n :set background=dark<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>r :vertical resize 85<CR>
+nnoremap <Leader>rs :%s/\s\+$//<CR>
+nnoremap <Leader>rt :!rspec spec/*<CR>
+nnoremap <Leader>s :source $MYVIMRC<CR>
+nnoremap <Leader>sP "*P<CR>
+nnoremap <Leader>spl :set spell!<CR>
+nnoremap <Leader>ss :source ~/.vim_session<CR>
+nnoremap <Leader>sy "*y
+nnoremap <Leader>tb :TagbarToggle<CR>
+nnoremap <Leader>td :e ~/documents/todo<CR>
+nnoremap <Leader>tn :tabnew<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>x :vsplit ~/.xmonad/xmonad.hs<CR>
+nnoremap <Leader>y "+y
+nnoremap <Leader>z :vsplit ~/.zshrc<CR>
+nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <leader>u "+y
+noremap  <Leader>p "+p<CR>
+noremap  <Leader>sp "*p<CR>
+
+"}}}

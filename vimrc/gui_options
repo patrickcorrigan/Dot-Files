@@ -1,0 +1,14 @@
+" ================ Gui Options " ==========================================={{{
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L
+set guioptions-=e
+set guioptions+=c
+
+set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
+" set guifont=Inconsolata-g\ Medium\ 10
+" set guifont=Anonymous\ Pro\ 12
+
+"}}}
+
