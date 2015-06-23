@@ -17,7 +17,6 @@ import XMonad.Layout.Grid
 import XMonad.Util.Run
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Actions.WindowGo
-import XMonad.Actions.GroupNavigation
 import XMonad.Actions.CopyWindow
 import System.IO
 import System.Process
@@ -32,7 +31,6 @@ main = do
   { manageHook = manageDocks<+> manageHook defaultConfig
   ,logHook = do
       takeTopFocus
-      historyHook
       dynamicLogWithPP $ defaultPP { ppOutput = hPutStrLn h
       , ppCurrent           =   dzenColor "#B9B9B9" "#464646" . pad
       , ppVisible           =   dzenColor "#F7F7F7" "#464646" . pad
@@ -76,7 +74,6 @@ main = do
   ,((myModMask, xK_a ), windows copyToAll)
   ,((myModMask .|. shiftMask, xK_a), killAllOtherCopies)
   ,((myModMask ,xK_f), sendMessage (Toggle "Full"))
-  ,((myModMask ,xK_Tab), nextMatch History (return True))
   ]
 
 myTerminal

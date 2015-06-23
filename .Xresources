@@ -46,173 +46,65 @@ URxvt.cursorUnderline:      false
 ! Pointer
 URxvt.pointerBlank:         true
 
+!-------------------------------------------------------------------------------
+! Dzen2
+!-------------------------------------------------------------------------------
+
+dzen2.font: xft:Source Code Pro for Powerline:size=10
+dzen2.foreground: #F7F7F7
+dzen2.background: #464646
 
 !-------------------------------------------------------------------------------
 ! Colours
 !-------------------------------------------------------------------------------
 
-/* !!Source http://github.com/altercation/solarized */
+! Base16 Grayscale
+! Scheme: Alexandre Gavioli (https://github.com/Alexx2/)
 
-/* *background: #002b36 */
-/* *foreground: #657b83 */
-/* !!*fading: 40 */
-/* *fadeColor: #002b36 */
-/* *cursorColor: #93a1a1 */
-/* *pointerColorBackground: #586e75 */
-/* *pointerColorForeground: #93a1a1 */
+#define base00 #101010
+#define base01 #252525
+#define base02 #464646
+#define base03 #525252
+#define base04 #ababab
+#define base05 #b9b9b9
+#define base06 #e3e3e3
+#define base07 #f7f7f7
+#define base08 #7c7c7c
+#define base09 #999999
+#define base0A #a0a0a0
+#define base0B #8e8e8e
+#define base0C #868686
+#define base0D #686868
+#define base0E #747474
+#define base0F #5e5e5e
 
-/* !! black dark/light */
-/* *color0: #073642 */
-/* *color8: #002b36 */
+*.foreground:   base02
+*.background:   base07
+*.cursorColor:  base02
 
-/* !! red dark/light */
-/* *color1: #dc322f */
-/* *color9: #cb4b16 */
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
 
-/* !! green dark/light */
-/* *color2: #859900 */
-/* *color10: #586e75 */
+*.color8:       base03
+*.color9:       base09
+*.color10:      base01
+*.color11:      base02
+*.color12:      base04
+*.color13:      base06
+*.color14:      base0F
+*.color15:      base07
 
-/* !! yellow dark/light */
-/* *color3: #b58900 */
-/* *color11: #657b83 */
-
-/* !! blue dark/light */
-/* *color4: #268bd2 */
-/* *color12: #839496 */
-
-/* !! magenta dark/light */
-/* *color5: #d33682 */
-/* *color13: #6c71c4 */
-
-/* !! cyan dark/light */
-/* *color6: #2aa198 */
-/* *color14: #93a1a1 */
-
-/* !! white dark/light */
-/* *color7: #eee8d5 */
-/* *color15: #fdf6e3 */
-
-dzen2.font: xft:Source Code Pro for Powerline:size=10
-dzen2.foreground: #ffffff
-dzen2.background: #2b2b2b
-
-
-
-
-/* URxvt.foreground: #dcdccc */
-/* URxvt*background: #3f3f3f */
-
-
-/* URxvt*colorUL: #c5f779 */
-/* URxvt*underlineColor: #c5f779 */
- 
-/* URxvt*color0: #3f3f3f */
-/* URxvt*color1: #705050 */
-/* URxvt*color2: #60b48a */
-/* URxvt*color3: #dfaf8f */
-/* URxvt*color4: #506070 */
-/* URxvt*color5: #dc8cc3 */
-/* URxvt*color6: #8cd0d3 */
-/* URxvt*color7: #DCDCCC */
- 
-/* URxvt*color8: #709080 */
-/* URxvt*color9: #cc9393 */
-/* URxvt*color10: #7f9f7f */
-/* URxvt*color11: #f0dfaf */
-/* URxvt*color12: #94bff3 */
-/* URxvt*color13: #ec93d3 */
-/* URxvt*color14: #93e0e3 */
-/* URxvt*color15: #ffffff */
- 
-/* !black */
-/* xterm*color0: #353535 */
-/* xterm*color8: #666666 */
-/* !red */
-/* xterm*color1: #AE4747 */
-/* xterm*color9: #EE6363 */
-/* !green */
-/* xterm*color2: #556B2F */
-/* xterm*color10: #9ACD32 */
-/* !brown/yellow */
-/* xterm*color3: #DAA520 */
-/* xterm*color11: #FFC125 */
-/* !blue */
-/* xterm*color4: #6F99B4 */
-/* xterm*color12: #7C96B0 */
-/* !magenta */
-/* xterm*color5: #8B7B8B */
-/* xterm*color13: #D8BFD8 */
-/* !cyan */
-/* xterm*color6: #A7A15E */
-/* xterm*color14: #F0E68C */
-/* !white */
-/* xterm*color7: #DDDDDD */
-/* xterm*color15: #FFFFFF */
-
-! X11 colors pieced together by Dmitry Medvinsky.
-! Based on Vim colorscheme "badwolf" pieced together by Steve Losh.
-! vim: fdm=marker
-
-! Colors definition {{{
-#define   plain            #f8f6f2
-#define   snow             #ffffff
-#define   coal             #000000
-
-#define   brightgravel     #d9cec3
-#define   lightgravel      #998f84
-#define   gravel           #857f78
-#define   mediumgravel     #666462
-#define   deepgravel       #45413b
-#define   deepergravel     #35322d
-#define   darkgravel       #242321
-#define   blackgravel      #1c1b1a
-#define   blackestgravel   #141413
-
-#define   dalespale        #fade3e
-#define   dirtyblonde      #f4cf86
-#define   taffy            #ff2c4b
-#define   saltwatertaffy   #8cffba
-#define   tardis           #0a9dff
-#define   orange           #ffa724
-#define   lime             #aeee00
-#define   dress            #ff9eb8
-#define   toffee           #b88853
-#define   coffee           #c7915b
-#define   darkroast        #88633f
-! }}}
-
-
-! Resourses {{{
-/* *background:  plain */
-/* *foreground:  blackestgravel */
-*background:  blackestgravel
-*foreground:  plain
-*cursorColor: tardis
-*scrollColor: deepgravel
-
-!        black
-*color0:      blackestgravel
-*color8:      coal
-!        red
-*color1:      taffy
-*color9:      taffy
-!        green
-*color2:      lime
-*color10:     lime
-!        yellow
-*color3:      dalespale
-*color11:     orange
-!        blue
-*color4:      tardis
-*color12:     tardis
-!        magenta
-*color5:      dress
-*color13:     dress
-!        cyan
-*color6:      saltwatertaffy
-*color14:     saltwatertaffy
-!        white
-*color7:      brightgravel
-*color15:     snow
-! }}}
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06

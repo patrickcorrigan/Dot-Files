@@ -3,7 +3,7 @@ compinit
 zsh-mime-setup
 
 promptinit
-prompt adam1
+# prompt adam1
 
 
 setopt RM_STAR_WAIT
@@ -29,6 +29,7 @@ alias torrents='/mnt/data/torrents'
 alias fy='/home/patrick/code/final_year'
 alias deploy='git push heroku master'
 alias code='/home/patrick/code'
+alias fm='/home/patrick/code/farmasala'
 
 
 alias vless='/usr/share/vim/vim74/macros/less.sh'
@@ -73,3 +74,5 @@ zle-keymap-select () {
 function cs () {
     cd "$@" && ls
     }
+PROMPT="%K{yellow}%n@%m%k %B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k"
+# PROMPT="%K{yellow}%n%k %B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k"
