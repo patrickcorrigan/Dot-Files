@@ -176,8 +176,15 @@ source ~/.vim/vimrc/highlight_word
 
 hi Search guibg=peru guifg=wheat
 hi IncSearch guibg=deepskyblue guifg=wheat
+highlight Normal guifg=black
+highlight Normal guibg=white
 
 set ssop-=options    " do not store global and local values in a session
 set ssop-=folds      " do not store folds
 
 iabbrev @@    patrickcorrigan7@gmail.com
+
+nnoremap <silent> <Leader>> :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <Leader>< :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>

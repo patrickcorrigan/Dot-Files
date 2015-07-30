@@ -23,8 +23,8 @@ URxvt.lineSpace:            0
 
 ! Fonts
 URxvt.allow_bold:           true
-URxvt.font: xft:Source Code Pro for Powerline:size=12
-URxvt.boldFont: xft:Source Code Pro for Powerline:bold:size=12
+URxvt.font: xft:Source Code Pro for Powerline:size=11
+URxvt.boldFont: xft:Source Code Pro for Powerline:bold:size=11
 
 ! Fix font space
 URxvt*letterSpace: -1
@@ -51,8 +51,8 @@ URxvt.pointerBlank:         true
 !-------------------------------------------------------------------------------
 
 dzen2.font: xft:Source Code Pro for Powerline:size=10
-dzen2.foreground: #F7F7F7
-dzen2.background: #464646
+dzen2.foreground: #000000
+dzen2.background: #FFFFFF
 
 !-------------------------------------------------------------------------------
 ! Colours
@@ -63,12 +63,12 @@ dzen2.background: #464646
 
 #define base00 #101010
 #define base01 #252525
-#define base02 #464646
+#define base02 #000000
 #define base03 #525252
 #define base04 #ababab
 #define base05 #b9b9b9
 #define base06 #e3e3e3
-#define base07 #f7f7f7
+#define base07 #FFFFFF
 #define base08 #7c7c7c
 #define base09 #999999
 #define base0A #a0a0a0

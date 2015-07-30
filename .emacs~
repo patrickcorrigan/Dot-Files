@@ -97,5 +97,6 @@ Repeated invocations toggle between the two most recently open buffers."
 (setq-default indent-tabs-mode nil)
 (require 'whitespace)
 (nyan-mode)
+(seqq nyan-wavy-trail t)
 
 (ac-config-default)

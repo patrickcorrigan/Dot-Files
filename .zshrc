@@ -30,6 +30,7 @@ alias fy='/home/patrick/code/final_year'
 alias deploy='git push heroku master'
 alias code='/home/patrick/code'
 alias fm='/home/patrick/code/farmasala'
+alias mm='/home/patrick/code/musica'
 
 
 alias vless='/usr/share/vim/vim74/macros/less.sh'
@@ -49,27 +50,6 @@ export PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 export PATH="/home/patrick/code/scripts:$PATH"
 export PATH="/home/patrick/code/bin:$PATH"
 export PATH="/home/patrick/.cabal/bin:$PATH"
-
-
-zle-keymap-select () {
-    if [ $TERM = "rxvt-unicode-256color" ]; then
-        if [ $KEYMAP = vicmd ]; then
-            echo -ne "\0033]12;Black\007"
-        else
-            echo -ne "\033]12;White\007"
-        fi
-    fi
-}
-
-    zle -N zle-keymap-select
-    zle-line-init () {
-        zle -K viins
-        if [ $TERM = "rxvt-unicode-256color" ]; then
-            echo -ne "\033]12;Red\007"
-        fi
-    }
-    zle -N zle-line-init
-    bindkey -v
 
 function cs () {
     cd "$@" && ls

@@ -34,11 +34,11 @@ main = do
       takeTopFocus
       historyHook
       dynamicLogWithPP $ defaultPP { ppOutput = hPutStrLn h
-      , ppCurrent           =   dzenColor "#B9B9B9" "#464646" . pad
-      , ppVisible           =   dzenColor "#F7F7F7" "#464646" . pad
-      , ppHidden            =   dzenColor "#000000" "#464646" . pad
-      , ppHiddenNoWindows   =   dzenColor "#F7F7F7" "#464646" . pad
-      , ppLayout   = dzenColor "#B9B9B9" "#464646" . pad . drop 9
+      , ppCurrent           =   dzenColor "#BF5FFF" "#FFFFFF" . pad
+      , ppVisible           =   dzenColor "#000000" "#FFFFFF" . pad
+      , ppHidden            =   dzenColor "#FF5FEF" "#FFFFFF" . pad
+      , ppHiddenNoWindows   =   dzenColor "#000000" "#FFFFFF" . pad
+      , ppLayout   = dzenColor "#000000" "#FFFFFF" . pad . drop 9
       , ppTitle    = const ""
       }
   ,layoutHook = minimize $ avoidStruts $ smartBorders (Full |||  Tall 1 (3/100) (1/2) ||| Mirror (Tall 1 (3/100) (1/2)) ||| tabbedBottom shrinkText (theme smallClean))
@@ -59,7 +59,7 @@ main = do
   ,((myModMask , xK_e), runOrRaise "emacs" (className =? "Emacs"))
   ,((myModMask , xK_r), runOrRaiseNext "evince" (className =? "Evince"))
   ,((myModMask , xK_s), raise (className =? "URxvt"))
-  ,((myModMask , xK_i), raise (className =? "Eclipse"))
+  ,((myModMask , xK_i), raise (className =? "jetbrains-studio"))
   ,((myModMask , xK_b), sendMessage ToggleStruts)
   ,((myModMask , xK_y), spawn myClipboardManager)
   ,((myModMask , xK_q), alert 100)
@@ -90,13 +90,13 @@ myWorkspaces = ["One","Two","Three","Four", "Five"]
     --"5", "6", "7", "8", "9"]
 -- myWorkspaces = ["Ⅰ","Ⅱ","Ⅲ","Ⅳ ",
     -- "5", "6", "7", "8", "9"]
-myStatusBar = "conky -c .conkyrc | dzen2 -e '' -fn 'Source Code Pro For Powerline:size=8' -x 400 -w 880"
+myStatusBar = "conky -c .conkyrc | dzen2 -e '' -fn 'Source Code Pro For Powerline:size=8' -x 400 -w 880 -ta 'r'"
 myWorkspaceBar = "dzen2 -e '' -fn 'Source Code Pro For Powerline:size=8' -x 0 -y 0 -w 400 -ta 'l'"
 -- myWorkspaceBar = "dzen2 -e '' -fn 'Uushi:size=9' -x 0 -y 0 -w 400 -ta 'l'"
 -- myWorkspaceBar = "dzen2 -fn 'Sans:size=10' -x 0 -y 0 -w 400 -ta 'l'"
 myDmenu = "dmenu_run -b -fn 'Source Code Pro For Powerline-9' -nb '#464646' -nf '#F7F7F7' "
 myLocker = "slock"
-myFocusedBorderColor = "#464646"
+myFocusedBorderColor = "#BF5FFF"
 myVolumeUp = "amixer set Master 10+ && volume_popup.sh"
 myVolumeDown = "amixer set Master 10- && volume_popup.sh"
 myToggleMute = "amixer set Master toggle && volume_popup.sh"

@@ -55,6 +55,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-fireplace'
 Plugin 'ehamberg/vim-cute-python'
 Plugin 'lervag/vim-latex'
+Plugin 'pangloss/vim-javascript'
 "}}}
 
 " ================ Improvements ============================================{{{
