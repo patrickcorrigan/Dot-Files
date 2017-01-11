@@ -7,7 +7,7 @@ update_interval 1
 update_interval_on_battery 10
 
 TEXT
-^ca(1,netinfo_popup.sh)Net ^fg(\#000000)${wireless_essid wlp3s0}^ca() \
+^ca(1,netinfo_popup.sh)Net ^fg(\#000000)${execp wireless_name_padded_truncated.sh}^ca() \
 ${if_match ${wireless_link_qual_perc wlp3s0} > 60}+${else}-${endif}  \
   \
 ^ca(1,battery_info_popup.sh)Battery ^fg(\#000000)${battery_percent}^ca()  \
@@ -17,7 +17,7 @@ Volume ^fg(\#000000)${execp volume_level.sh | pad.sh 3}  \
 Brightness ^fg(\#000000)${execp xbacklight -get | awk '{printf("%.0f\n",
 $1)}' | pad.sh 3}  \
   \
-Updates ^fg(\#000000)${execpi 3600 checkupdates | wc -l | pad.sh 2}  \
+Updates ^fg(\#000000)${execpi 3600 checkupdates | wc -l | pad.sh 3}  \
   \
 ^ca(1,caffeine_info_popup.sh)^fg(\#000000)Caffeine Off^ca()  \
   \

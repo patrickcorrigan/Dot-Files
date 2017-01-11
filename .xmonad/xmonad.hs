@@ -22,6 +22,7 @@ import XMonad.Actions.CopyWindow
 import System.IO
 import System.Process
 import XMonad.Hooks.ICCCMFocus
+import XMonad.Hooks.SetWMName
 
 main = do
  statusBarPipe <- spawnPipe myStatusBar
@@ -41,12 +42,14 @@ main = do
       , ppLayout   = dzenColor "#000000" "#FFFFFF" . pad . drop 9
       , ppTitle    = const ""
       }
-  ,layoutHook = minimize $ avoidStruts $ smartBorders (Full |||  Tall 1 (3/100) (1/2) ||| Mirror (Tall 1 (3/100) (1/2)) ||| tabbedBottom shrinkText (theme smallClean))
+  ,layoutHook = minimize $ avoidStruts $ smartBorders (Full |||  Tall 1 (3/100) (1/2) ||| Mirror (Tall 1 (3/100) (1/2)) )
+  -- ,layoutHook = minimize $ avoidStruts $ smartBorders (Full |||  Tall 1 (3/100) (1/2) ||| Mirror (Tall 1 (3/100) (1/2)) ||| tabbedBottom shrinkText (theme smallClean))
   ,terminal = myTerminal
   ,modMask = myModMask
   ,borderWidth = myBorderWidth
   ,workspaces = myWorkspaces
   ,focusedBorderColor = myFocusedBorderColor
+  ,startupHook = setWMName "LG3D"
   }
   `additionalKeys`
   [((myModMask, xK_p), spawn myDmenu)
@@ -84,17 +87,18 @@ myTerminal
 myBrowser = "firefox"
 myMediaPlayer = "vlc"
 chromium = "chromium"
-myBorderWidth = 1
+myBorderWidth = 3
 myModMask = mod4Mask
 myWorkspaces = ["One","Two","Three","Four", "Five"]
     --"5", "6", "7", "8", "9"]
 -- myWorkspaces = ["Ⅰ","Ⅱ","Ⅲ","Ⅳ ",
     -- "5", "6", "7", "8", "9"]
-myStatusBar = "conky -c .conkyrc | dzen2 -e '' -fn 'Source Code Pro For Powerline:size=8' -x 400 -w 880 -ta 'r'"
+myStatusBar = "conky -c .conkyrc | dzen2 -e '' -fn 'Source Code Pro For Powerline:size=8' -x 400 -y 0 -w 880 -ta 'r'"
 myWorkspaceBar = "dzen2 -e '' -fn 'Source Code Pro For Powerline:size=8' -x 0 -y 0 -w 400 -ta 'l'"
 -- myWorkspaceBar = "dzen2 -e '' -fn 'Uushi:size=9' -x 0 -y 0 -w 400 -ta 'l'"
 -- myWorkspaceBar = "dzen2 -fn 'Sans:size=10' -x 0 -y 0 -w 400 -ta 'l'"
-myDmenu = "dmenu_run -b -fn 'Source Code Pro For Powerline-9' -nb '#464646' -nf '#F7F7F7' "
+-- myDmenu = "dmenu_run -b -fn 'Source Code Pro For Powerline-9' -nb '#464646' -nf '#F7F7F7' "
+myDmenu = "dmenu_run -b -fn 'Source Code Pro For Powerline-9' -nb '#FFFFFF' -nf '#000000' "
 myLocker = "slock"
 myFocusedBorderColor = "#BF5FFF"
 myVolumeUp = "amixer set Master 10+ && volume_popup.sh"

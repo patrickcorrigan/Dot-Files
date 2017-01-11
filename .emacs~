@@ -13,8 +13,6 @@
  ;; If there is more than one, they won't work right.
  )
 
-(desktop-save-mode 1)
-
 (defvar my-term-shell "/bin/zsh")
 (defadvice ansi-term (before force-bash)
   (interactive (list my-term-shell)))
@@ -41,7 +39,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key
-  "f" 'projectile-find-file
+  "f" 'helm-projectile
   "b" 'switch-to-buffer
   "x" 'execute-extended-command
   "k" 'kill-buffer
@@ -49,7 +47,6 @@ Repeated invocations toggle between the two most recently open buffers."
   "p" 'clipboard-yank
   "w"  'evil-write
   "s"  'ansi-term
-  "e" '(lambda() (interactive)(find-file "~/.emacs"))
   ";"  'switch-to-previous-buffer)
 
 ; Remove GUI
@@ -60,7 +57,6 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ; General Emacs settings
 (setq vc-follow-symlinks nil) 
-(setq column-number-mode t) 
 (global-linum-mode t)
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
@@ -70,11 +66,8 @@ Repeated invocations toggle between the two most recently open buffers."
 (set-face-foreground 'isearch "#FFFFFF")
 (set-face-foreground 'lazy-highlight "#FFFFFF")
 (set-face-background 'lazy-highlight "#00BFFF")
-
-(require 'ido)
-(ido-mode t)
-(ido-vertical-mode 1)
-
+;; (require 'ido)
+;; (ido-mode t)
 ;; (require 'helm-config)
 ;; (helm-mode 1)
 
@@ -105,11 +98,6 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; (require 'powerline)
 ;; (powerline-center-theme)
 
-(require 'org)
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-
 (setq menu-prompting nil)
 (setq-default indent-tabs-mode nil)
 (require 'whitespace)
@@ -117,13 +105,5 @@ Repeated invocations toggle between the two most recently open buffers."
 
 (ac-config-default)
 
-(setq backup-directory-alist `(("." . "~/.emacs_backups")))
-
-;; (require 'column-marker)
-;; (add-hook 'emacs-lisp-mode-hook (lambda () (interactive) (column-marker-1 80)))
-
 (add-hook 'after-init-hook #'global-flycheck-mode)
 ;; (provide '.emacs)\n;;; .emacs ends here
-
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))

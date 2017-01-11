@@ -37,7 +37,7 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'godlygeek/tabular'
@@ -63,8 +63,11 @@ Plugin 'tmhedberg/matchit'
 Plugin 'rking/ag.vim'
 Plugin 'rm-hull/vim-locate'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 Plugin 'sjl/gundo.vim'
 Plugin 'vim-scripts/BufOnly.vim'
+Plugin 'kana/vim-submode'
 "}}}
 
 " ================ Miscellaneous ==========================================={{{

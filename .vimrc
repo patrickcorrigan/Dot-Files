@@ -27,7 +27,7 @@ set formatoptions+=t
 set cursorline
 set cursorcolumn
 set nowrap
-:match ErrorMsg '\%>79v.\+'
+" :match ErrorMsg '\%>79v.\+'
 "}}}
 
 " ================" Search ================================================={{{
@@ -87,6 +87,39 @@ source ~/.vim/vimrc/vundle
 " ================ Plugin Configuration ===================================={{{
 " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 let g:rspec_command = "! bundle exec rspec --no-color {spec}"
+set wildignore+=*/dist/*,*/node_modules/*,*/bower_components/*,*.so,*.swp,*.zip 
+
+
+
+
+" Submodes
+
+" A message will appear in the message line when you're in a submode
+" and stay there until the mode has existed.
+let g:submode_always_show_submode = 1
+
+" We're taking over the default <C-w> setting. Don't worry we'll do
+" our best to put back the default functionality.
+call submode#enter_with('window', 'n', '', '<C-w>')
+
+" Note: <C-c> will also get you out to the mode without this mapping.
+" Note: <C-[> also behaves as <ESC>
+call submode#leave_with('window', 'n', '', '<ESC>')
+
+" Go through every letter
+for key in ['a','b','c','d','e','f','g','h','i','j','k','l','m',
+\           'n','o','p','q','r','s','t','u','v','w','x','y','z']
+  " maps lowercase, uppercase and <C-key>
+  call submode#map('window', 'n', '', key, '<C-w>' . key)
+  call submode#map('window', 'n', '', toupper(key), '<C-w>' . toupper(key))
+  call submode#map('window', 'n', '', '<C-' . key . '>', '<C-w>' . '<C-'.key . '>')
+endfor
+" Go through symbols. Sadly, '|', not supported in submode plugin.
+for key in ['=','_','+','-','<','>']
+  call submode#map('window', 'n', '', key, '<C-w>' . key)
+endfor
+
+" Old way, just in case.
 
 " ================ Vim Wikki ==================================================
 let wiki_1 = {}
@@ -99,7 +132,8 @@ let NERDTreeMapHelp='<f1>'
 " let g:ctrlp_by_filename=1
 
 " ================ Airline ====================================================
-" let g:airline#extensions#tabline#enabled = 1
+ " let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#show_buffers = 1
 let g:airline_powerline_fonts=1
 " let g:ycm_auto_trigger = 0
 " let g:airline_section_c .= '%{getcwd()}'

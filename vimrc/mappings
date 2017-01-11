@@ -2,9 +2,20 @@
 
 cmap jk <Esc>
 imap jk <Esc>
-imap kk <Esc>:w<CR>
+imap kk <Esc>:w<CR>i
 
-nmap <silent> <A-k> :wincmd k<CR>
-nmap <silent> <A-j> :wincmd j<CR>
-nmap <silent> <A-h> :wincmd h<CR>
-nmap <silent> <A-l> :wincmd l<CR>
+nmap <silent> <a-k> :wincmd k<cr>
+nmap <silent> <a-j> :wincmd j<cr>
+nmap <silent> <a-h> :wincmd h<cr>
+nmap <silent> <a-l> :wincmd l<cr>
+
+nmap <silent> <C-k> :wincmd k<cr>
+nmap <silent> <C-j> :wincmd j<cr>
+nmap <silent> <C-h> :wincmd h<cr>
+nmap <silent> <C-l> :wincmd l<cr>
+
+
+
+
+" nmap <silent> <C-j> :bn<CR> */
+" nmap <silent> <C-k> :bp<CR> */
