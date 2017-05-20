@@ -5,7 +5,7 @@ zsh-mime-setup
 promptinit
 # prompt adam1
 
-source /etc/profile.d/autojump.zsh
+# source /etc/profile.d/autojump.zsh
 
 
 setopt RM_STAR_WAIT
@@ -22,6 +22,7 @@ SAVEHIST=1000
 HISTSIZE=1000
 HISTFILE=~/.history
 
+alias unsafe-chrome="chromium-browser --disable-web-security --user-data-dir ~/chrome"
 alias automocha="supervisor -q -n exit -x mocha -- -b"
 alias ls='ls --color=auto'
 alias ll='ls -lh'
@@ -49,25 +50,37 @@ alias se='python -m http.server'
 alias bb='cd .. && phonegap build browser && cd www && python -m http.server'
 alias ba='phonegap build android'
 
+bindkey -v
 bindkey -M viins 'jk' vi-cmd-mode
 bindkey -M vicmd '?' history-incremental-search-backward
 bindkey -M vicmd '/' history-incremental-search-forward
 bindkey -M vicmd v edit-command-line
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
+    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+    zle reset-prompt
+}
+
 
 export CLUSTER_NAME="cluster-1"
 export ZONE="europe-west1-c"
 
 export EDITOR="$(which vim)"
 
-export PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
+# export PATH="$(ruby -e 'puts Gem.user_dir')/bin:$PATH"
 export PATH="/home/patrick/code/scripts:$PATH"
 export PATH="/home/patrick/code/bin:$PATH"
 export PATH="/home/patrick/.cabal/bin:$PATH"
+export PATH="/home/patrickcorrigan/code/opt/Postman:$PATH"
 
 function cs () {
     cd "$@" && ls
     }
-PROMPT="%K{yellow}%n@%m-%*%k %B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k"
+PROMPT="%B%n@%m%b - %* %B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k"
 #
 # PROMPT="%K{yellow}%n@%m%k %B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k"
 # PROMPT="%K{yellow}%n%k %B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k"
@@ -78,3 +91,10 @@ PROMPT="%K{yellow}%n@%m-%*%k %B%F{cyan}%(4~|...|)%3~%F{white} %# %b%f%k"
 # export _JAVA_AWT_WM_NONREPARENTING=1
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
+
+export AWS_ACCESS_KEY_ID=AKIAIB4CKL3BD2D3XKLA 
+export AWS_SECRET_ACCESS_KEY=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
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
+
+
+export SLS_DEBUG=*
